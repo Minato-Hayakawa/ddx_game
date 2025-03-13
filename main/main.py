@@ -198,46 +198,74 @@ class App:
         #台
         pyxel.blt(self.ddx_vx,self.ddx_vy,0,0,0,16,16,pyxel.COLOR_BLACK)
         #d/dx
-        for i in range(4):
-            for j in range(15):
-                pyxel.blt(j*8,i*8,0,16,0,8,16,pyxel.COLOR_BLACK)
+        # for i in range(4):
+        #     for j in range(15):
+        #         pyxel.blt(j*8,i*8,0,16,0,8,16,pyxel.COLOR_BLACK)
         #x
-        for i in range(3):
+        for i in range(5):
             for j in range(7):
                 if self.flags1[j]==False and self.topnum==7:
-                    pyxel.blt(j*16+8,i*16+36,0,24,0,16,16,pyxel.COLOR_BLACK)
+                    pyxel.blt(j*16+8,i*16,0,24,0,16,16,pyxel.COLOR_BLACK)
                 elif self.flags1[j]==True and self.count1[j]==1 and self.topnum==7:
                     pyxel.blt(j*16+8,32+36,0,32,16,11,8,pyxel.COLOR_BLACK)  #2x
-                    pyxel.blt(j*16+8,0+36,0,24,0,16,16,pyxel.COLOR_BLACK)  #x^2
-                    pyxel.blt(j*16+8,16+36,0,24,0,16,16,pyxel.COLOR_BLACK)
+                    pyxel.blt(j*16+8,0,0,24,0,16,16,pyxel.COLOR_BLACK)  #x^2
+                    pyxel.blt(j*16+8,16,0,24,0,16,16,pyxel.COLOR_BLACK)
+                    pyxel.blt(j*16+8,32,0,24,0,16,16,pyxel.COLOR_BLACK)
+                    pyxel.blt(j*16+8,48,0,24,0,16,16,pyxel.COLOR_BLACK)
                 elif self.flags2[j]==True and self.count1[j]==2 and self.topnum==7:
                     pyxel.blt(j*16+8,32+36,0,16,32,12,10,pyxel.COLOR_BLACK)  #2
-                    pyxel.blt(j*16+8,0+36,0,24,0,16,16,pyxel.COLOR_BLACK)
-                    pyxel.blt(j*16+8,16+36,0,24,0,16,16,pyxel.COLOR_BLACK)
+                    pyxel.blt(j*16+8,0,0,24,0,16,16,pyxel.COLOR_BLACK)
+                    pyxel.blt(j*16+8,16,0,24,0,16,16,pyxel.COLOR_BLACK)
+                    pyxel.blt(j*16+8,32,0,24,0,16,16,pyxel.COLOR_BLACK)
+                    pyxel.blt(j*16+8,48,0,24,0,16,16,pyxel.COLOR_BLACK)
                 elif self.flags3[j]==True and self.count1[j]==3 and self.topnum==7:
                     pyxel.blt(j*16+8,32+36,0,32,32,16,16,pyxel.COLOR_BLACK)  # 
-                    pyxel.blt(j*16+8,0+36,0,24,0,16,16,pyxel.COLOR_BLACK)
-                    pyxel.blt(j*16+8,16+36,0,24,0,16,16,pyxel.COLOR_BLACK)
+                    pyxel.blt(j*16+8,0,0,24,0,16,16,pyxel.COLOR_BLACK)
+                    pyxel.blt(j*16+8,16,0,24,0,16,16,pyxel.COLOR_BLACK)
+                    pyxel.blt(j*16+8,32,0,24,0,16,16,pyxel.COLOR_BLACK)
+                    pyxel.blt(j*16+8,48,0,24,0,16,16,pyxel.COLOR_BLACK)
                 elif self.count1[j]==0 and self.topnum==6:
                     pyxel.blt(j*16+8,32+36,0,32,32,16,16,pyxel.COLOR_BLACK)
-                    pyxel.blt(j*16+8,0+36,0,24,0,16,16,pyxel.COLOR_BLACK)
-                    pyxel.blt(j*16+8,16+36,0,24,0,16,16,pyxel.COLOR_BLACK)
+                    pyxel.blt(j*16+8,0,0,24,0,16,16,pyxel.COLOR_BLACK)
+                    pyxel.blt(j*16+8,16,0,24,0,16,16,pyxel.COLOR_BLACK)
+                    pyxel.blt(j*16+8,32,0,24,0,16,16,pyxel.COLOR_BLACK)
+                    pyxel.blt(j*16+8,48,0,24,0,16,16,pyxel.COLOR_BLACK)
                 elif self.flags1[j]==True and self.count1[j]==1 and self.topnum==6:
                     pyxel.blt(j*16+8,32+36,0,32,32,16,16,pyxel.COLOR_BLACK)
-                    pyxel.blt(j*16+8,16+36,0,32,16,11,8,pyxel.COLOR_BLACK)
-                    pyxel.blt(j*16+8,0+36,0,24,0,16,16,pyxel.COLOR_BLACK)
+                    pyxel.blt(j*16+8,48,0,32,16,11,8,pyxel.COLOR_BLACK)
+                    pyxel.blt(j*16+8,0,0,24,0,16,16,pyxel.COLOR_BLACK)
+                    pyxel.blt(j*16+8,16,0,24,0,16,16,pyxel.COLOR_BLACK)
+                    pyxel.blt(j*16+8,32,0,24,0,16,16,pyxel.COLOR_BLACK)
                 elif self.flags2[j]==True and self.count1[j]==2 and self.topnum==6:
                     pyxel.blt(j*16+8,32+36,0,32,32,16,16,pyxel.COLOR_BLACK)
-                    pyxel.blt(j*16+8,16+36,0,16,32,12,10,pyxel.COLOR_BLACK)
-                    pyxel.blt(j*16+8,0+36,0,24,0,16,16,pyxel.COLOR_BLACK)
+                    pyxel.blt(j*16+8,48,0,16,32,12,10,pyxel.COLOR_BLACK)
+                    pyxel.blt(j*16+8,0,0,24,0,16,16,pyxel.COLOR_BLACK)
+                    pyxel.blt(j*16+8,16,0,24,0,16,16,pyxel.COLOR_BLACK)
+                    pyxel.blt(j*16+8,32,0,24,0,16,16,pyxel.COLOR_BLACK)
                 elif self.flags3[j]==True and self.count1[j]==3 and self.topnum==6:
                     pyxel.blt(j*16+8,32+36,0,32,32,16,16,pyxel.COLOR_BLACK)
-                    pyxel.blt(j*16+8,16+36,0,32,32,16,16,pyxel.COLOR_BLACK)
-                    pyxel.blt(j*16+8,0+36,0,24,0,16,16,pyxel.COLOR_BLACK)
-                elif self.count1==[0]*7 and self.topnum==5:
+                    pyxel.blt(j*16+8,48,0,32,32,16,16,pyxel.COLOR_BLACK)
+                    pyxel.blt(j*16+8,0,0,24,0,16,16,pyxel.COLOR_BLACK)
+                    pyxel.blt(j*16+8,16,0,24,0,16,16,pyxel.COLOR_BLACK)
+                    pyxel.blt(j*16+8,32,0,24,0,16,16,pyxel.COLOR_BLACK)
+                elif self.count1[j]==0 and self.topnum==5:
                     pyxel.blt(j*16+8,32+36,0,32,32,16,16,pyxel.COLOR_BLACK) 
-                    pyxel.blt(j*16+8,16+36,0,32,32,16,16,pyxel.COLOR_BLACK)
-                    pyxel.blt(j*16+8,0+36,0,24,0,16,16,pyxel.COLOR_BLACK)
+                    pyxel.blt(j*16+8,48,0,32,32,16,16,pyxel.COLOR_BLACK)
+                    pyxel.blt(j*16+8,0,0,24,0,16,16,pyxel.COLOR_BLACK)
+                    pyxel.blt(j*16+8,16,0,24,0,16,16,pyxel.COLOR_BLACK)
+                    pyxel.blt(j*16+8,32,0,24,0,16,16,pyxel.COLOR_BLACK)
+                elif self.flags1[j]==True and self.count1[j]==1 and self.topnum==5:
+                    pyxel.blt(j*16+8,32+36,0,32,32,16,16,pyxel.COLOR_BLACK) 
+                    pyxel.blt(j*16+8,48,0,32,32,16,16,pyxel.COLOR_BLACK)
+                    pyxel.blt(j*16+8,0,0,32,16,11,8,pyxel.COLOR_BLACK)
+                    pyxel.blt(j*16+8,16,0,24,0,16,16,pyxel.COLOR_BLACK)
+                    pyxel.blt(j*16+8,32,0,24,0,16,16,pyxel.COLOR_BLACK)
+                elif self.flags2[j]==True and self.count1[j]==2 and self.topnum==5:
+                    pyxel.blt(j*16+8,32+36,0,32,32,16,16,pyxel.COLOR_BLACK) 
+                    pyxel.blt(j*16+8,48,0,32,32,16,16,pyxel.COLOR_BLACK)
+                    pyxel.blt(j*16+8,32,0,16,32,12,10,pyxel.COLOR_BLACK)
+                    pyxel.blt(j*16+8,16,0,24,0,16,16,pyxel.COLOR_BLACK)
+                    pyxel.blt(j*16+8,0,0,24,0,16,16,pyxel.COLOR_BLACK)
         #x^2
         for i in range(8):
             pyxel.blt(i*15,135,0,0,28,15,19,pyxel.COLOR_BLACK)

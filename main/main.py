@@ -45,7 +45,7 @@ class App:
             self.ddx_vx-=1
             self.xvector=-1
         elif self.xvector==-1 and self.ddx_vx>0 and self.speedup==False:
-            self.ddx_vx+=-1
+            self.ddx_vx-=1
             self.xvector=-1
         elif self.xvector==-1 and self.ddx_vx<=0 and self.speedup==False:
             self.ddx_vx+=1
@@ -61,6 +61,7 @@ class App:
             self.xvector=-1
         elif self.xvector==-1 and self.ddx_vx<=0 and self.speedup==True:
             self.ddx_vx+=2
+            self.xvector=1
         
         #ddxのx成分の跳ね返り処理
         

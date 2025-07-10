@@ -162,6 +162,7 @@ class App:
         self.flags3=[False]*7
         self.speedup=False
         BotanHandler=BotanHandler()
+        Stand=Stand()
         pyxel.init(120,160,title="d/dx")
         pyxel.load("my_resource.pyxres") #イメージバンクの画像を読み込み
         pyxel.run(self.update,self.draw)
@@ -181,7 +182,8 @@ class App:
                 self.player_x-=1
         #台の操作
         
-        #ddxのx成分の跳ね返り処理
+        Stand.HorizonalMove(self)
+        Stand.VerticalMove(self)
                 
        
         #ddxの当たり判定

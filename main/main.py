@@ -146,6 +146,8 @@ class Stand:
                     self.flags1=[False]*7
                     self.flags2=[False]*7
                     self.flags3=[False]*7
+    
+    def Reflection(self):
         
 class App:
     def __init__(self): #初期値を与える

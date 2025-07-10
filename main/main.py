@@ -195,7 +195,7 @@ class App:
         
         Stand.HorizonalMove(self)
         Stand.VerticalMove(self)
-                
+        Stand.Reflection(self)
        
         #ddxの当たり判定
                     

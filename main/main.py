@@ -23,12 +23,17 @@ class BotanHandler:
             return False
 
 class Stand:
+    def __init__(self):
+        self.xVector=True
+        self.xSpeed=0
+    def HorizonalMoce():
+        
 class App:
     def __init__(self): #初期値を与える
         self.player_x=40
-        self.ddx_vx=0
+        # self.ddx_vx=0
         self.ddx_vy=83
-        self.xvector=1
+        # self.xvector=1
         self.yvector=1
         self.top={5:80,4:64,3:48,2:32,1:16}
         self.topnum=5

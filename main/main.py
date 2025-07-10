@@ -5,6 +5,7 @@ SCREEN_HIGHT =160
 i=0
 j=0
 
+class BotanHandler:
 class App:
     def __init__(self): #初期値を与える
         self.player_x=40

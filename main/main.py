@@ -148,6 +148,15 @@ class Stand:
                     self.flags3=[False]*7
     
     def Reflection(self):
+            if self.yVector==True and self.ySpeed==SCREEN_HIGHT*3//4-8:
+            if self.player_x-16<=self.xSpeed<=self.player_x+36:
+                self.yVector=False
+                if pyxel.btn(pyxel.KEY_RIGHT) and pyxel.btn(pyxel.KEY_UP):
+                    self.xSpeed+=1
+                    self.speedup=True
+                elif pyxel.btn(pyxel.KEY_LEFT) and pyxel.btn(pyxel.KEY_UP):
+                    self.xSpeed-=1
+                    self.speedup=True
         
 class App:
     def __init__(self): #初期値を与える
@@ -191,15 +200,7 @@ class App:
         #ddxの当たり判定
                     
         
-        if self.yVector==True and self.ySpeed==SCREEN_HIGHT*3//4-8:
-            if self.player_x-16<=self.xSpeed<=self.player_x+36:
-                self.yVector=False
-                if pyxel.btn(pyxel.KEY_RIGHT) and pyxel.btn(pyxel.KEY_UP):
-                    self.xSpeed+=1
-                    self.speedup=True
-                elif pyxel.btn(pyxel.KEY_LEFT) and pyxel.btn(pyxel.KEY_UP):
-                    self.xSpeed-=1
-                    self.speedup=True
+
         #台の当たり判定
         
                    

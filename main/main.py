@@ -11,6 +11,12 @@ class BotanHandler:
             return True
         else:
             return False
+    def left():
+        if pyxel.btn(pyxel.KEY_LEFT):
+            return True
+        else:
+            return False
+    
 class App:
     def __init__(self): #初期値を与える
         self.player_x=40

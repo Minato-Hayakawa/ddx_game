@@ -6,6 +6,11 @@ i=0
 j=0
 
 class BotanHandler:
+    def right():
+        if pyxel.btn(pyxel.KEY_RIGHT):
+            return True
+        else:
+            return False
 class App:
     def __init__(self): #初期値を与える
         self.player_x=40

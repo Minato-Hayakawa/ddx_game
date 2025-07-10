@@ -26,38 +26,41 @@ class Stand:
     def __init__(self):
         self.xVector=True
         self.xSpeed=0
-    def HorizonalMoce(self):
-        if self.xvector==1 and self.ddx_vx<SCREEN_WIDTH-12 and self.speedup==False:
+    def HorizonalMove(self):
+        if self.xVector==True and self.ddx_vx<SCREEN_WIDTH-12:
             self.ddx_vx+=1
-            self.xvector=1
-        elif self.xvector==1 and self.ddx_vx>=SCREEN_WIDTH-12 and self.speedup==False:
+            self.xVector=True
+        elif self.xVector==True and self.ddx_vx>=SCREEN_WIDTH-12:
             self.ddx_vx-=1
-            self.xvector=-1
-        elif self.xvector==-1 and self.ddx_vx>0 and self.speedup==False:
+            self.xVector=False
+        elif self.xVector==False and self.ddx_vx>0:
             self.ddx_vx-=1
-            self.xvector=-1
-        elif self.xvector==-1 and self.ddx_vx<=0 and self.speedup==False:
+            self.xVector=False
+        elif self.xVector==False and self.ddx_vx<=0:
             self.ddx_vx+=1
-            self.xvector=1
-        elif self.xvector==1 and self.ddx_vx<SCREEN_WIDTH-12 and self.speedup==True:
+            self.xVector=True
+        elif self.xVector==True and self.ddx_vx<SCREEN_WIDTH-12:
             self.ddx_vx+=2
-            self.xvector=1
-        elif self.xvector==1 and self.ddx_vx>=SCREEN_WIDTH-12 and self.speedup==True:
+            self.xVector=True
+        elif self.xVector==True and self.ddx_vx>=SCREEN_WIDTH-12:
             self.ddx_vx-=2
-            self.xvector=-1
-        elif self.xvector==-1 and self.ddx_vx>0 and self.speedup==True:
+            self.xVector=False
+        elif self.xVector==False and self.ddx_vx>0:
             self.ddx_vx+=-2
-            self.xvector=-1
-        elif self.xvector==-1 and self.ddx_vx<=0 and self.speedup==True:
+            self.xVector=False
+        elif self.xVector==False and self.ddx_vx<=0:
             self.ddx_vx+=2
-            self.xvector=1
+            self.xVector=True
+    
+    def VerticalMove(self):
+        
         
 class App:
     def __init__(self): #初期値を与える
         self.player_x=40
         # self.ddx_vx=0
         self.ddx_vy=83
-        # self.xvector=1
+        # self.xVector=True
         self.yvector=1
         self.top={5:80,4:64,3:48,2:32,1:16}
         self.topnum=5

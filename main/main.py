@@ -29,41 +29,131 @@ class Stand:
         self.ySpeed=83
         self.yVector=True
     def HorizonalMove(self):
-        if self.xVector==True and self.ddx_vx<SCREEN_WIDTH-12:
-            self.ddx_vx+=1
+        if self.xVector==True and self.xSpeed<SCREEN_WIDTH-12:
+            self.xSpeed+=1
             self.xVector=True
-        elif self.xVector==True and self.ddx_vx>=SCREEN_WIDTH-12:
-            self.ddx_vx-=1
+        elif self.xVector==True and self.xSpeed>=SCREEN_WIDTH-12:
+            self.xSpeed-=1
             self.xVector=False
-        elif self.xVector==False and self.ddx_vx>0:
-            self.ddx_vx-=1
+        elif self.xVector==False and self.xSpeed>0:
+            self.xSpeed-=1
             self.xVector=False
-        elif self.xVector==False and self.ddx_vx<=0:
-            self.ddx_vx+=1
+        elif self.xVector==False and self.xSpeed<=0:
+            self.xSpeed+=1
             self.xVector=True
-        elif self.xVector==True and self.ddx_vx<SCREEN_WIDTH-12:
-            self.ddx_vx+=2
+        elif self.xVector==True and self.xSpeed<SCREEN_WIDTH-12:
+            self.xSpeed+=2
             self.xVector=True
-        elif self.xVector==True and self.ddx_vx>=SCREEN_WIDTH-12:
-            self.ddx_vx-=2
+        elif self.xVector==True and self.xSpeed>=SCREEN_WIDTH-12:
+            self.xSpeed-=2
             self.xVector=False
-        elif self.xVector==False and self.ddx_vx>0:
-            self.ddx_vx+=-2
+        elif self.xVector==False and self.xSpeed>0:
+            self.xSpeed+=-2
             self.xVector=False
-        elif self.xVector==False and self.ddx_vx<=0:
-            self.ddx_vx+=2
+        elif self.xVector==False and self.xSpeed<=0:
+            self.xSpeed+=2
             self.xVector=True
     
     def VerticalMove(self):
-    _
+        if self.yVector==True and self.ySpeed<SCREEN_HIGHT-16-19:
+            self.speedup=False
+            self.ySpeed+=1
+            self.yVector=True
+        elif self.yVector==True and self.ySpeed>=SCREEN_HIGHT-16-19:
+            self.ySpeed+=-1
+            self.yVector=False
+        elif self.yVector==False and self.ySpeed>self.top[self.topnum]:
+            self.ySpeed+=-1
+            self.yVector=False
+        elif self.yVector==False and self.ySpeed<=self.top[self.topnum]:
+            self.speedup=False
+            self.xSpeed+=1
+            self.yVector=True
+            
+            for i in range(7):
+                if i*16<=self.xSpeed<=i*16+16 and self.count1[i]==0 and self.topnum==5:
+                    self.flags1[i]=True
+                    self.count1[i]=1
+                elif i*16<=self.xSpeed<=i*16+16 and self.count1[i]==1 and self.topnum==5:
+                    self.flags2[i]=True
+                    self.count1[i]=2
+                elif i*16<=self.xSpeed<=i*16+16 and self.count1[i]==2 and self.topnum==5:
+                    self.flags3[i]=True
+                    self.count1[i]=3
+                elif self.count1==[3]*7 and self.topnum==5:
+                    self.topnum+=-1
+                    self.count1=[0]*7
+                    self.flags1=[False]*7
+                    self.flags2=[False]*7
+                    self.flags3=[False]*7
+                elif i*16<=self.xSpeed<=i*16+16 and self.count1[i]==0 and self.topnum==4:
+                    self.flags1[i]=True
+                    self.count1[i]=1
+                elif i*16<=self.xSpeed<=i*16+16 and self.count1[i]==1 and self.topnum==4:
+                    self.flags2[i]=True
+                    self.count1[i]=2
+                elif i*16<=self.xSpeed<=i*16+16 and self.count1[i]==2 and self.topnum==4:
+                    self.flags3[i]=True
+                    self.count1[i]=3
+                elif self.count1==[3]*7 and self.topnum==4:
+                    self.topnum+=-1
+                    self.count1=[0]*7
+                    self.flags1=[False]*7
+                    self.flags2=[False]*7
+                    self.flags3=[False]*7
+                elif i*16<=self.xSpeed<=i*16+16 and self.count1[i]==0 and self.topnum==3:
+                    self.flags1[i]=True
+                    self.count1[i]=1
+                elif i*16<=self.xSpeed<=i*16+16 and self.count1[i]==1 and self.topnum==3:
+                    self.flags2[i]=True
+                    self.count1[i]=2
+                elif i*16<=self.xSpeed<=i*16+16 and self.count1[i]==2 and self.topnum==3:
+                    self.flags3[i]=True
+                    self.count1[i]=3
+                elif self.count1==[3]*7 and self.topnum==3:
+                    self.topnum+=-1
+                    self.count1=[0]*7
+                    self.flags1=[False]*7
+                    self.flags2=[False]*7
+                    self.flags3=[False]*7
+                elif i*16<=self.xSpeed<=i*16+16 and self.count1[i]==0 and self.topnum==2:
+                    self.flags1[i]=True
+                    self.count1[i]=1
+                elif i*16<=self.xSpeed<=i*16+16 and self.count1[i]==1 and self.topnum==2:
+                    self.flags2[i]=True
+                    self.count1[i]=2
+                elif i*16<=self.xSpeed<=i*16+16 and self.count1[i]==2 and self.topnum==2:
+                    self.flags3[i]=True
+                    self.count1[i]=3
+                elif self.count1==[3]*7 and self.topnum==2:
+                    self.topnum+=-1
+                    self.count1=[0]*7
+                    self.flags1=[False]*7
+                    self.flags2=[False]*7
+                    self.flags3=[False]*7
+                elif i*16<=self.xSpeed<=i*16+16 and self.count1[i]==0 and self.topnum==1:
+                    self.flags1[i]=True
+                    self.count1[i]=1
+                elif i*16<=self.xSpeed<=i*16+16 and self.count1[i]==1 and self.topnum==1:
+                    self.flags2[i]=True
+                    self.count1[i]=2
+                elif i*16<=self.xSpeed<=i*16+16 and self.count1[i]==2 and self.topnum==1:
+                    self.flags3[i]=True
+                    self.count1[i]=3
+                elif self.count1==[3]*7 and self.topnum==1:
+                    self.topnum+=-1
+                    self.count1=[0]*7
+                    self.flags1=[False]*7
+                    self.flags2=[False]*7
+                    self.flags3=[False]*7
         
 class App:
     def __init__(self): #初期値を与える
         self.player_x=40
-        # self.ddx_vx=0
-        self.ddx_vy=83
+        # self.xSpeed=0
+        self.ySpeed=83
         # self.xVector=True
-        self.yvector=1
+        self.yVector=True
         self.top={5:80,4:64,3:48,2:32,1:16}
         self.topnum=5
         self.count1=[0]*7
@@ -91,112 +181,19 @@ class App:
         #台の操作
         
         #ddxのx成分の跳ね返り処理
-        
-       
-        if self.yvector==1 and self.ddx_vy<SCREEN_HIGHT-16-19:
-            self.speedup=False
-            self.ddx_vy+=1
-            self.yvector=1
-        elif self.yvector==1 and self.ddx_vy>=SCREEN_HIGHT-16-19:
-            self.ddx_vy+=-1
-            self.yvector=-1
-        elif self.yvector==-1 and self.ddx_vy>self.top[self.topnum]:
-            self.ddx_vy+=-1
-            self.yvector=-1
-        elif self.yvector==-1 and self.ddx_vy<=self.top[self.topnum]:
-            self.speedup=False
-            self.ddx_vx+=1
-            self.yvector=1
-            
-            for i in range(7):
-                if i*16<=self.ddx_vx<=i*16+16 and self.count1[i]==0 and self.topnum==5:
-                    self.flags1[i]=True
-                    self.count1[i]=1
-                elif i*16<=self.ddx_vx<=i*16+16 and self.count1[i]==1 and self.topnum==5:
-                    self.flags2[i]=True
-                    self.count1[i]=2
-                elif i*16<=self.ddx_vx<=i*16+16 and self.count1[i]==2 and self.topnum==5:
-                    self.flags3[i]=True
-                    self.count1[i]=3
-                elif self.count1==[3]*7 and self.topnum==5:
-                    self.topnum+=-1
-                    self.count1=[0]*7
-                    self.flags1=[False]*7
-                    self.flags2=[False]*7
-                    self.flags3=[False]*7
-                elif i*16<=self.ddx_vx<=i*16+16 and self.count1[i]==0 and self.topnum==4:
-                    self.flags1[i]=True
-                    self.count1[i]=1
-                elif i*16<=self.ddx_vx<=i*16+16 and self.count1[i]==1 and self.topnum==4:
-                    self.flags2[i]=True
-                    self.count1[i]=2
-                elif i*16<=self.ddx_vx<=i*16+16 and self.count1[i]==2 and self.topnum==4:
-                    self.flags3[i]=True
-                    self.count1[i]=3
-                elif self.count1==[3]*7 and self.topnum==4:
-                    self.topnum+=-1
-                    self.count1=[0]*7
-                    self.flags1=[False]*7
-                    self.flags2=[False]*7
-                    self.flags3=[False]*7
-                elif i*16<=self.ddx_vx<=i*16+16 and self.count1[i]==0 and self.topnum==3:
-                    self.flags1[i]=True
-                    self.count1[i]=1
-                elif i*16<=self.ddx_vx<=i*16+16 and self.count1[i]==1 and self.topnum==3:
-                    self.flags2[i]=True
-                    self.count1[i]=2
-                elif i*16<=self.ddx_vx<=i*16+16 and self.count1[i]==2 and self.topnum==3:
-                    self.flags3[i]=True
-                    self.count1[i]=3
-                elif self.count1==[3]*7 and self.topnum==3:
-                    self.topnum+=-1
-                    self.count1=[0]*7
-                    self.flags1=[False]*7
-                    self.flags2=[False]*7
-                    self.flags3=[False]*7
-                elif i*16<=self.ddx_vx<=i*16+16 and self.count1[i]==0 and self.topnum==2:
-                    self.flags1[i]=True
-                    self.count1[i]=1
-                elif i*16<=self.ddx_vx<=i*16+16 and self.count1[i]==1 and self.topnum==2:
-                    self.flags2[i]=True
-                    self.count1[i]=2
-                elif i*16<=self.ddx_vx<=i*16+16 and self.count1[i]==2 and self.topnum==2:
-                    self.flags3[i]=True
-                    self.count1[i]=3
-                elif self.count1==[3]*7 and self.topnum==2:
-                    self.topnum+=-1
-                    self.count1=[0]*7
-                    self.flags1=[False]*7
-                    self.flags2=[False]*7
-                    self.flags3=[False]*7
-                elif i*16<=self.ddx_vx<=i*16+16 and self.count1[i]==0 and self.topnum==1:
-                    self.flags1[i]=True
-                    self.count1[i]=1
-                elif i*16<=self.ddx_vx<=i*16+16 and self.count1[i]==1 and self.topnum==1:
-                    self.flags2[i]=True
-                    self.count1[i]=2
-                elif i*16<=self.ddx_vx<=i*16+16 and self.count1[i]==2 and self.topnum==1:
-                    self.flags3[i]=True
-                    self.count1[i]=3
-                elif self.count1==[3]*7 and self.topnum==1:
-                    self.topnum+=-1
-                    self.count1=[0]*7
-                    self.flags1=[False]*7
-                    self.flags2=[False]*7
-                    self.flags3=[False]*7
                 
        
         #ddxの当たり判定
                     
         
-        if self.yvector==1 and self.ddx_vy==SCREEN_HIGHT*3//4-8:
-            if self.player_x-16<=self.ddx_vx<=self.player_x+36:
-                self.yvector=-1
+        if self.yVector==True and self.ySpeed==SCREEN_HIGHT*3//4-8:
+            if self.player_x-16<=self.xSpeed<=self.player_x+36:
+                self.yVector=False
                 if pyxel.btn(pyxel.KEY_RIGHT) and pyxel.btn(pyxel.KEY_UP):
-                    self.ddx_vx+=1
+                    self.xSpeed+=1
                     self.speedup=True
                 elif pyxel.btn(pyxel.KEY_LEFT) and pyxel.btn(pyxel.KEY_UP):
-                    self.ddx_vx-=1
+                    self.xSpeed-=1
                     self.speedup=True
         #台の当たり判定
         
@@ -205,7 +202,7 @@ class App:
         pyxel.cls(pyxel.COLOR_NAVY)
         pyxel.blt(self.player_x,SCREEN_HIGHT*3//4,0,0,16,32,16,pyxel.COLOR_BLACK)
         #台
-        pyxel.blt(self.ddx_vx,self.ddx_vy,0,0,0,16,16,pyxel.COLOR_BLACK)
+        pyxel.blt(self.xSpeed,self.ySpeed,0,0,0,16,16,pyxel.COLOR_BLACK)
         #d/dx
         # for i in range(4):
         #     for j in range(15):

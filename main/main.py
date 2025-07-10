@@ -26,6 +26,8 @@ class Stand:
     def __init__(self):
         self.xVector=True
         self.xSpeed=0
+        self.ySpeed=83
+        self.yVector=True
     def HorizonalMove(self):
         if self.xVector==True and self.ddx_vx<SCREEN_WIDTH-12:
             self.ddx_vx+=1
@@ -53,7 +55,7 @@ class Stand:
             self.xVector=True
     
     def VerticalMove(self):
-        
+    _
         
 class App:
     def __init__(self): #初期値を与える

@@ -26,7 +26,31 @@ class Stand:
     def __init__(self):
         self.xVector=True
         self.xSpeed=0
-    def HorizonalMoce():
+    def HorizonalMoce(self):
+        if self.xvector==1 and self.ddx_vx<SCREEN_WIDTH-12 and self.speedup==False:
+            self.ddx_vx+=1
+            self.xvector=1
+        elif self.xvector==1 and self.ddx_vx>=SCREEN_WIDTH-12 and self.speedup==False:
+            self.ddx_vx-=1
+            self.xvector=-1
+        elif self.xvector==-1 and self.ddx_vx>0 and self.speedup==False:
+            self.ddx_vx-=1
+            self.xvector=-1
+        elif self.xvector==-1 and self.ddx_vx<=0 and self.speedup==False:
+            self.ddx_vx+=1
+            self.xvector=1
+        elif self.xvector==1 and self.ddx_vx<SCREEN_WIDTH-12 and self.speedup==True:
+            self.ddx_vx+=2
+            self.xvector=1
+        elif self.xvector==1 and self.ddx_vx>=SCREEN_WIDTH-12 and self.speedup==True:
+            self.ddx_vx-=2
+            self.xvector=-1
+        elif self.xvector==-1 and self.ddx_vx>0 and self.speedup==True:
+            self.ddx_vx+=-2
+            self.xvector=-1
+        elif self.xvector==-1 and self.ddx_vx<=0 and self.speedup==True:
+            self.ddx_vx+=2
+            self.xvector=1
         
 class App:
     def __init__(self): #初期値を与える
@@ -60,31 +84,6 @@ class App:
             if pyxel.btn(pyxel.KEY_UP):
                 self.player_x-=1
         #台の操作
-            
-        if self.xvector==1 and self.ddx_vx<SCREEN_WIDTH-12 and self.speedup==False:
-            self.ddx_vx+=1
-            self.xvector=1
-        elif self.xvector==1 and self.ddx_vx>=SCREEN_WIDTH-12 and self.speedup==False:
-            self.ddx_vx-=1
-            self.xvector=-1
-        elif self.xvector==-1 and self.ddx_vx>0 and self.speedup==False:
-            self.ddx_vx-=1
-            self.xvector=-1
-        elif self.xvector==-1 and self.ddx_vx<=0 and self.speedup==False:
-            self.ddx_vx+=1
-            self.xvector=1
-        elif self.xvector==1 and self.ddx_vx<SCREEN_WIDTH-12 and self.speedup==True:
-            self.ddx_vx+=2
-            self.xvector=1
-        elif self.xvector==1 and self.ddx_vx>=SCREEN_WIDTH-12 and self.speedup==True:
-            self.ddx_vx-=2
-            self.xvector=-1
-        elif self.xvector==-1 and self.ddx_vx>0 and self.speedup==True:
-            self.ddx_vx+=-2
-            self.xvector=-1
-        elif self.xvector==-1 and self.ddx_vx<=0 and self.speedup==True:
-            self.ddx_vx+=2
-            self.xvector=1
         
         #ddxのx成分の跳ね返り処理
         

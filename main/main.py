@@ -186,13 +186,13 @@ class App:
         if pyxel.btnp(pyxel.KEY_ESCAPE): #押した瞬間を検知
             pyxel.quit()
         
-        if BotanHandlerObj.Right() and self.player_x<SCREEN_WIDTH-32: #押され続けているのを検知
+        if BotanHandler.Right() and self.player_x<SCREEN_WIDTH-32: #押され続けているのを検知
             self.player_x+=1
             if pyxel.btn(pyxel.KEY_UP):
                 self.player_x+=1
-        elif BotanHandlerObj.Left() and self.player_x>0:
+        elif BotanHandler.Left() and self.player_x>0:
             self.player_x-=1
-            if BotanHandlerObj.Up():
+            if BotanHandler.Up():
                 self.player_x-=1
         #台の操作
         

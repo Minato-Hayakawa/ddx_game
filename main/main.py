@@ -6,16 +6,19 @@ i=0
 j=0
 
 class BotanHandler:
+    @staticmethod
     def Right():
         if pyxel.btn(pyxel.KEY_RIGHT):
             return True
         else:
             return False
+    @staticmethod
     def Left():
         if pyxel.btn(pyxel.KEY_LEFT):
             return True
         else:
             return False
+    @staticmethod
     def Up():
         if pyxel.btn(pyxel.KEY_UP):
             return True
@@ -172,8 +175,8 @@ class App:
         self.flags2=[False]*7
         self.flags3=[False]*7
         self.speedup=False
-        BotanHandler=BotanHandler()
-        Stand=Stand()
+        BotanHandlerObj=BotanHandler()
+        StandObj=Stand()
         pyxel.init(120,160,title="d/dx")
         pyxel.load("my_resource.pyxres") #イメージバンクの画像を読み込み
         pyxel.run(self.update,self.draw)
@@ -183,26 +186,19 @@ class App:
         if pyxel.btnp(pyxel.KEY_ESCAPE): #押した瞬間を検知
             pyxel.quit()
         
-        if BotanHandler.Right() and self.player_x<SCREEN_WIDTH-32: #押され続けているのを検知
+        if BotanHandlerObj.Right() and self.player_x<SCREEN_WIDTH-32: #押され続けているのを検知
             self.player_x+=1
             if pyxel.btn(pyxel.KEY_UP):
                 self.player_x+=1
-        elif BotanHandler.Left() and self.player_x>0:
+        elif BotanHandlerObj.Left() and self.player_x>0:
             self.player_x-=1
-            if BotanHandler.Up():
+            if BotanHandlerObj.Up():
                 self.player_x-=1
         #台の操作
         
         Stand.HorizonalMove(self)
         Stand.VerticalMove(self)
         Stand.Reflection(self)
-       
-        #ddxの当たり判定
-                    
-        
-
-        #台の当たり判定
-        
                    
     def draw(self):
         pyxel.cls(pyxel.COLOR_NAVY)

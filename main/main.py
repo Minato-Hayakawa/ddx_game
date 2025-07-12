@@ -31,6 +31,7 @@ class Stand:
         self.xSpeed=0
         self.ySpeed=83
         self.yVector=True
+    
     def HorizonalMove(self):
         if self.xVector==True and self.xSpeed<SCREEN_WIDTH-12:
             self.xSpeed+=1
@@ -182,25 +183,25 @@ class App:
         if pyxel.btnp(pyxel.KEY_ESCAPE): #押した瞬間を検知
             pyxel.quit()
         
-        if BotanHandler.Right() and self.player_x<SCREEN_WIDTH-32: #押され続けているのを検知
+        if self.BotanHandlerObj.Right() and self.player_x<SCREEN_WIDTH-32: #押され続けているのを検知
             self.player_x+=1
-            if pyxel.btn(pyxel.KEY_UP):
+            if self.BotanHandlerObj.Up():
                 self.player_x+=1
-        elif BotanHandler.Left() and self.player_x>0:
+        elif self.BotanHandlerObj.Left() and self.player_x>0:
             self.player_x-=1
-            if BotanHandler.Up():
+            if self.BotanHandlerObj.Up():
                 self.player_x-=1
         #台の操作
         
-        Stand.HorizonalMove(self)
-        Stand.VerticalMove(self)
-        Stand.Reflection(self)
+        self.StandObj.HorizonalMove()
+        self.StandObj.VerticalMove()
+        self.StandObj.Reflection()
                    
     def draw(self):
         pyxel.cls(pyxel.COLOR_NAVY)
         pyxel.blt(self.player_x,SCREEN_HIGHT*3//4,0,0,16,32,16,pyxel.COLOR_BLACK)
         #台
-        pyxel.blt(self.xSpeed,self.ySpeed,0,0,0,16,16,pyxel.COLOR_BLACK)
+        pyxel.blt(self.StandObj.xSpeed,self.StandObj.ySpeed,0,0,0,16,16,pyxel.COLOR_BLACK)
         #d/dx
         # for i in range(4):
         #     for j in range(15):

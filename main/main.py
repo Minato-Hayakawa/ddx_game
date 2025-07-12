@@ -164,10 +164,6 @@ class Stand:
 class App:
     def __init__(self): #初期値を与える
         self.player_x=40
-        # self.xSpeed=0
-        self.ySpeed=83
-        # self.xVector=True
-        self.yVector=True
         self.top={5:80,4:64,3:48,2:32,1:16}
         self.topnum=5
         self.count1=[0]*7

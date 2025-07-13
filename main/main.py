@@ -23,13 +23,26 @@ class BotanHandler:
             return False
 
 class Stand:
-    def __init__(self,xSpeed:int,ySpeed:int,xVector:bool,yVector:bool,xPosition:int,Block:np.array):
+    def __init__(self,xSpeed:int,
+                 ySpeed:int,
+                 xVector:bool,
+                 yVector:bool,
+                 xPosition:int,
+                 yPosition:int,
+                 BlockCount:np.array,
+                 BlockXPosition:np.array,
+                 BlockYPosition:np.array,
+                 SpeedUp:bool):
         self.xSpeed=xSpeed
         self.ySpeed=ySpeed
         self.xVector=xVector
         self.yVector=yVector
         self.xPosition=xPosition
-        self.Block=np.array(Block)
+        self.yPosition=yPosition
+        self.BlockCount=np.array(BlockCount)
+        self.BlockXPosition=np.array(BlockXPosition)
+        self.BlockYPosition=np.array(BlockYPosition)
+        self.SpeedUp=SpeedUp
     
     def HorizonalMove(self):
         if self.xVector==True and self.xSpeed<SCREEN_WIDTH-12:
@@ -47,13 +60,14 @@ class Stand:
     
     def VerticalMove(self):
         if self.yVector==True and self.ySpeed<SCREEN_HIGHT-16-19:
-            self.speedup=False
-            self.ySpeed+=1
+            self.yPosition+=self.ySpeed
             self.yVector=True
         elif self.yVector==True and self.ySpeed>=SCREEN_HIGHT-16-19:
-            self.ySpeed+=-1
+            self.yPosition-=self.ySpeed
             self.yVector=False
-        elif self.yVector=False and self.yPosition
+        for i in range(7):
+            for j in range(5):
+                if self.yVector==False and self.yPosition==self.BlockPosition[j] and 0<=self.xPosition<=16
         # elif self.yVector==False and self.ySpeed>self.top[self.topnum]:
         #     self.ySpeed+=-1
         #     self.yVector=False
@@ -153,27 +167,32 @@ class Stand:
         
 class App:
     def __init__(self): #初期値を与える
-        xSpeed=0
-        ySpeed=83
+        xSpeed=1
+        ySpeed=1
         xVector=True
         yVector=True
         xPosition=40
-        Block=np.array([[True,True,True,True,True],
-                        [True,True,True,True,True],
-                        [True,True,True,True,True],
-                        [True,True,True,True,True],
-                        [True,True,True,True,True],
-                        [True,True,True,True,True],
-                        [True,True,True,True,True],])
-        self.top={5:80,4:64,3:48,2:32,1:16}
-        self.topnum=5
-        self.count1=[0]*7
-        self.flags1=[False]*7
-        self.flags2=[False]*7
-        self.flags3=[False]*7
+        yPosition=40
+        BlockCount=np.array([[3,3,3,3,3],
+                        [3,3,3,3,3],
+                        [3,3,3,3,3],
+                        [3,3,3,3,3],
+                        [3,3,3,3,3],
+                        [3,3,3,3,3],
+                        [3,3,3,3,3],])
+        BlockPosition=np.array([80,64,48,32,16])
+        SpeedUp=False
         self.speedup=False
         self.BotanHandlerObj=BotanHandler()
-        self.StandObj=Stand(xSpeed,ySpeed,xVector,yVector,xPosition,Block)
+        self.StandObj=Stand(xSpeed,
+                            ySpeed,
+                            xVector,
+                            yVector,
+                            xPosition,
+                            yPosition,
+                            BlockCount,
+                            BlockPosition,
+                            SpeedUp)
         pyxel.init(120,160,title="d/dx")
         pyxel.load("my_resource.pyxres") #イメージバンクの画像を読み込み
         pyxel.run(self.update,self.draw)

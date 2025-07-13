@@ -129,6 +129,7 @@ class App:
                         BlockXPosition,
                         BlockYPosition)
         self.StandObj=Stand(xSpeed,
+                            yVector,
                             StandxPosition,
                             StandyPosition)
         pyxel.init(120,160,title="d/dx")

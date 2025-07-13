@@ -1,37 +1,46 @@
 import pyxel
 import numpy as np
+
 SCREEN_WIDTH =120
 SCREEN_HIGHT =160
+
 class BotanHandler:
+    
     @staticmethod
     def Right():
         if pyxel.btn(pyxel.KEY_RIGHT):
             return True
         else:
             return False
+        
     @staticmethod
     def Left():
         if pyxel.btn(pyxel.KEY_LEFT):
             return True
         else:
             return False
+        
     @staticmethod
     def Up():
         if pyxel.btn(pyxel.KEY_UP):
             return True
         else:
             return False
+        
 class ddx:
-    def __init__(self,
-                 xSpeed:int,
-                 ySpeed:int,
-                 xVector:bool,
-                 yVector:bool,
-                 ddx_xPosition:int,
-                 ddx_yPosition:int,
-                 BlockCount:int,
-                 BlockXPosition:np.array,
-                 BlockYPosition:np.array):
+    
+    def __init__(
+        self,
+        xSpeed:int,
+        ySpeed:int,
+        xVector:bool,
+        yVector:bool,
+        ddx_xPosition:int,
+        ddx_yPosition:int,
+        BlockCount:int,
+        BlockXPosition:np.array,
+        BlockYPosition:np.array
+        ):
         self.xSpeed=xSpeed
         self.ySpeed=ySpeed
         self.xVector=xVector
@@ -70,16 +79,19 @@ class ddx:
                     self.yVector=True
         
 class Stand:
-    def __init__(self,
-                 yVector,
-                 xSpeed:int,
-                 StandxPosition:int,
-                 StandyPosition:int):
+    def __init__(
+        self,
+        yVector,
+        xSpeed:int,
+        StandxPosition:int,
+        StandyPosition:int
+        ):
         self.xSpeed=xSpeed
         self.yVector=yVector
         self.StandxPosition=StandxPosition
         self.StandyPosition=StandyPosition
         self.BotanHandlerObj=BotanHandler()
+        
     def HorizonalMove(self):
         if self.BotanHandlerObj.Right() and self.StandxPosition<SCREEN_WIDTH-32: #押され続けているのを検知
             self.StandxPosition+=self.xSpeed
@@ -89,6 +101,7 @@ class Stand:
             self.StandxPosition-=self.xSpeed
             if self.BotanHandlerObj.Up():
                 self.StandxPosition-=self.xSpeed*2
+                
     def StandReflection(self):
             if self.yVector==True and self.ddx_yPosition==SCREEN_HIGHT*3//4-8:
                 if self.ddx_yPosition-16<=self.ddx_xPosition<=self.ddx_yPosition+36:
@@ -136,7 +149,6 @@ class App:
         pyxel.load("my_resource.pyxres") #イメージバンクの画像を読み込み
         pyxel.run(self.update,self.draw)
         
-
     def update(self): #フレーム更新時の処理
         if pyxel.btnp(pyxel.KEY_ESCAPE): #押した瞬間を検知
             pyxel.quit()

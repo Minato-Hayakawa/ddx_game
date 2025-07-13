@@ -1,10 +1,7 @@
 import pyxel
-
+import numpy as np
 SCREEN_WIDTH =120
 SCREEN_HIGHT =160
-i=0
-j=0
-
 class BotanHandler:
     @staticmethod
     def Right():
@@ -26,12 +23,13 @@ class BotanHandler:
             return False
 
 class Stand:
-    def __init__(self,xSpeed:int,ySpeed:int,xVector:bool,yVector:bool,xPosition:int):
+    def __init__(self,xSpeed:int,ySpeed:int,xVector:bool,yVector:bool,xPosition:int,Block:np.array):
         self.xSpeed=xSpeed
         self.ySpeed=ySpeed
         self.xVector=xVector
         self.yVector=yVector
         self.xPosition=xPosition
+        self.Block[7][5]=Block
     
     def HorizonalMove(self):
         if self.xVector==True and self.xSpeed<SCREEN_WIDTH-12:
@@ -169,7 +167,14 @@ class App:
         ySpeed=83
         xVector=True
         yVector=True
-        self.xPosition=40
+        xPosition=40
+        Block=np.array([[True,True,True,True,True],
+                        [True,True,True,True,True],
+                        [True,True,True,True,True],
+                        [True,True,True,True,True],
+                        [True,True,True,True,True],
+                        [True,True,True,True,True],
+                        [True,True,True,True,True],])
         self.top={5:80,4:64,3:48,2:32,1:16}
         self.topnum=5
         self.count1=[0]*7
@@ -178,7 +183,7 @@ class App:
         self.flags3=[False]*7
         self.speedup=False
         self.BotanHandlerObj=BotanHandler()
-        self.StandObj=Stand(xSpeed,ySpeed,xVector,yVector)
+        self.StandObj=Stand(xSpeed,ySpeed,xVector,yVector,xPosition,Block)
         pyxel.init(120,160,title="d/dx")
         pyxel.load("my_resource.pyxres") #イメージバンクの画像を読み込み
         pyxel.run(self.update,self.draw)
@@ -188,14 +193,14 @@ class App:
         if pyxel.btnp(pyxel.KEY_ESCAPE): #押した瞬間を検知
             pyxel.quit()
         
-        if self.BotanHandlerObj.Right() and self.xPosition<SCREEN_WIDTH-32: #押され続けているのを検知
-            self.xPosition+=1
+        if self.BotanHandlerObj.Right() and self.StandObj.xPosition<SCREEN_WIDTH-32: #押され続けているのを検知
+            self.StandObj.xPosition+=1
             if self.BotanHandlerObj.Up():
-                self.xPosition+=1
-        elif self.BotanHandlerObj.Left() and self.xPosition>0:
-            self.xPosition-=1
+                self.StandObj.xPosition+=1
+        elif self.BotanHandlerObj.Left() and self.StandObj.xPosition>0:
+            self.StandObj.xPosition-=1
             if self.BotanHandlerObj.Up():
-                self.xPosition-=1
+                self.StandObj.xPosition-=1
         #台の操作
         
         self.StandObj.HorizonalMove()
@@ -204,7 +209,7 @@ class App:
                    
     def draw(self):
         pyxel.cls(pyxel.COLOR_NAVY)
-        pyxel.blt(self.xPosition,SCREEN_HIGHT*3//4,0,0,16,32,16,pyxel.COLOR_BLACK)
+        pyxel.blt(self.StandObj.xPosition,SCREEN_HIGHT*3//4,0,0,16,32,16,pyxel.COLOR_BLACK)
         #台
         pyxel.blt(self.StandObj.xSpeed,self.StandObj.ySpeed,0,0,0,16,16,pyxel.COLOR_BLACK)
         #d/dx

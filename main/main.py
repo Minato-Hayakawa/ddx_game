@@ -29,32 +29,20 @@ class Stand:
         self.xVector=xVector
         self.yVector=yVector
         self.xPosition=xPosition
-        self.Block[7][5]=Block
+        self.Block=np.array(Block)
     
     def HorizonalMove(self):
         if self.xVector==True and self.xSpeed<SCREEN_WIDTH-12:
-            self.xSpeed+=1
+            self.xPosition+=self.xSpeed
             self.xVector=True
         elif self.xVector==True and self.xSpeed>=SCREEN_WIDTH-12:
-            self.xSpeed-=1
+            self.xPosition+=self.xSpeed
             self.xVector=False
         elif self.xVector==False and self.xSpeed>0:
-            self.xSpeed-=1
+            self.xPosition-=self.xSpeed
             self.xVector=False
         elif self.xVector==False and self.xSpeed<=0:
-            self.xSpeed+=1
-            self.xVector=True
-        elif self.xVector==True and self.xSpeed<SCREEN_WIDTH-12:
-            self.xSpeed+=2
-            self.xVector=True
-        elif self.xVector==True and self.xSpeed>=SCREEN_WIDTH-12:
-            self.xSpeed-=2
-            self.xVector=False
-        elif self.xVector==False and self.xSpeed>0:
-            self.xSpeed+=-2
-            self.xVector=False
-        elif self.xVector==False and self.xSpeed<=0:
-            self.xSpeed+=2
+            self.xPosition+=self.xSpeed
             self.xVector=True
     
     def VerticalMove(self):
@@ -65,90 +53,92 @@ class Stand:
         elif self.yVector==True and self.ySpeed>=SCREEN_HIGHT-16-19:
             self.ySpeed+=-1
             self.yVector=False
-        elif self.yVector==False and self.ySpeed>self.top[self.topnum]:
-            self.ySpeed+=-1
-            self.yVector=False
-        elif self.yVector==False and self.ySpeed<=self.top[self.topnum]:
-            self.speedup=False
-            self.xSpeed+=1
-            self.yVector=True
+        elif self.yVector=False and self.yPosition
+        # elif self.yVector==False and self.ySpeed>self.top[self.topnum]:
+        #     self.ySpeed+=-1
+        #     self.yVector=False
+        # elif self.yVector==False and self.ySpeed<=self.top[self.topnum]:
+        #     self.speedup=False
+        #     self.xSpeed+=1
+        #     self.yVector=True
             
-            for i in range(7):
-                if i*16<=self.xSpeed<=i*16+16 and self.count1[i]==0 and self.topnum==5:
-                    self.flags1[i]=True
-                    self.count1[i]=1
-                elif i*16<=self.xSpeed<=i*16+16 and self.count1[i]==1 and self.topnum==5:
-                    self.flags2[i]=True
-                    self.count1[i]=2
-                elif i*16<=self.xSpeed<=i*16+16 and self.count1[i]==2 and self.topnum==5:
-                    self.flags3[i]=True
-                    self.count1[i]=3
-                elif self.count1==[3]*7 and self.topnum==5:
-                    self.topnum+=-1
-                    self.count1=[0]*7
-                    self.flags1=[False]*7
-                    self.flags2=[False]*7
-                    self.flags3=[False]*7
-                elif i*16<=self.xSpeed<=i*16+16 and self.count1[i]==0 and self.topnum==4:
-                    self.flags1[i]=True
-                    self.count1[i]=1
-                elif i*16<=self.xSpeed<=i*16+16 and self.count1[i]==1 and self.topnum==4:
-                    self.flags2[i]=True
-                    self.count1[i]=2
-                elif i*16<=self.xSpeed<=i*16+16 and self.count1[i]==2 and self.topnum==4:
-                    self.flags3[i]=True
-                    self.count1[i]=3
-                elif self.count1==[3]*7 and self.topnum==4:
-                    self.topnum+=-1
-                    self.count1=[0]*7
-                    self.flags1=[False]*7
-                    self.flags2=[False]*7
-                    self.flags3=[False]*7
-                elif i*16<=self.xSpeed<=i*16+16 and self.count1[i]==0 and self.topnum==3:
-                    self.flags1[i]=True
-                    self.count1[i]=1
-                elif i*16<=self.xSpeed<=i*16+16 and self.count1[i]==1 and self.topnum==3:
-                    self.flags2[i]=True
-                    self.count1[i]=2
-                elif i*16<=self.xSpeed<=i*16+16 and self.count1[i]==2 and self.topnum==3:
-                    self.flags3[i]=True
-                    self.count1[i]=3
-                elif self.count1==[3]*7 and self.topnum==3:
-                    self.topnum+=-1
-                    self.count1=[0]*7
-                    self.flags1=[False]*7
-                    self.flags2=[False]*7
-                    self.flags3=[False]*7
-                elif i*16<=self.xSpeed<=i*16+16 and self.count1[i]==0 and self.topnum==2:
-                    self.flags1[i]=True
-                    self.count1[i]=1
-                elif i*16<=self.xSpeed<=i*16+16 and self.count1[i]==1 and self.topnum==2:
-                    self.flags2[i]=True
-                    self.count1[i]=2
-                elif i*16<=self.xSpeed<=i*16+16 and self.count1[i]==2 and self.topnum==2:
-                    self.flags3[i]=True
-                    self.count1[i]=3
-                elif self.count1==[3]*7 and self.topnum==2:
-                    self.topnum+=-1
-                    self.count1=[0]*7
-                    self.flags1=[False]*7
-                    self.flags2=[False]*7
-                    self.flags3=[False]*7
-                elif i*16<=self.xSpeed<=i*16+16 and self.count1[i]==0 and self.topnum==1:
-                    self.flags1[i]=True
-                    self.count1[i]=1
-                elif i*16<=self.xSpeed<=i*16+16 and self.count1[i]==1 and self.topnum==1:
-                    self.flags2[i]=True
-                    self.count1[i]=2
-                elif i*16<=self.xSpeed<=i*16+16 and self.count1[i]==2 and self.topnum==1:
-                    self.flags3[i]=True
-                    self.count1[i]=3
-                elif self.count1==[3]*7 and self.topnum==1:
-                    self.topnum+=-1
-                    self.count1=[0]*7
-                    self.flags1=[False]*7
-                    self.flags2=[False]*7
-                    self.flags3=[False]*7
+        #     for i in range(7):
+        #         for j in range(5)
+        #         if i*16<=self.xSpeed<=i*16+16 and self.count1[i]==0 and j==5:
+        #             self.flags1[i]=True
+        #             self.count1[i]=1
+        #         elif i*16<=self.xSpeed<=i*16+16 and self.count1[i]==1 and j==5:
+        #             self.flags2[i]=True
+        #             self.count1[i]=2
+        #         elif i*16<=self.xSpeed<=i*16+16 and self.count1[i]==2 and j==5:
+        #             self.flags3[i]=True
+        #             self.count1[i]=3
+        #         elif self.count1==[3]*7 and j==5:
+        #             self.Block[i][j]=False
+        #             self.count1=[0]*7
+        #             self.flags1=[False]*7
+        #             self.flags2=[False]*7
+        #             self.flags3=[False]*7
+        #         elif i*16<=self.xSpeed<=i*16+16 and self.count1[i]==0 and j==4:
+        #             self.flags1[i]=True
+        #             self.count1[i]=1
+        #         elif i*16<=self.xSpeed<=i*16+16 and self.count1[i]==1 and j==4:
+        #             self.flags2[i]=True
+        #             self.count1[i]=2
+        #         elif i*16<=self.xSpeed<=i*16+16 and self.count1[i]==2 and j==4:
+        #             self.flags3[i]=True
+        #             self.count1[i]=3
+        #         elif self.count1==[3]*7 and j==4:
+        #             self.topnum+=-1
+        #             self.count1=[0]*7
+        #             self.flags1=[False]*7
+        #             self.flags2=[False]*7
+        #             self.flags3=[False]*7
+        #         elif i*16<=self.xSpeed<=i*16+16 and self.count1[i]==0 and j==3:
+        #             self.flags1[i]=True
+        #             self.count1[i]=1
+        #         elif i*16<=self.xSpeed<=i*16+16 and self.count1[i]==1 and j==3:
+        #             self.flags2[i]=True
+        #             self.count1[i]=2
+        #         elif i*16<=self.xSpeed<=i*16+16 and self.count1[i]==2 and j==3:
+        #             self.flags3[i]=True
+        #             self.count1[i]=3
+        #         elif self.count1==[3]*7 and j==3:
+        #             self.topnum+=-1
+        #             self.count1=[0]*7
+        #             self.flags1=[False]*7
+        #             self.flags2=[False]*7
+        #             self.flags3=[False]*7
+        #         elif i*16<=self.xSpeed<=i*16+16 and self.count1[i]==0 and j==2:
+        #             self.flags1[i]=True
+        #             self.count1[i]=1
+        #         elif i*16<=self.xSpeed<=i*16+16 and self.count1[i]==1 and j==2:
+        #             self.flags2[i]=True
+        #             self.count1[i]=2
+        #         elif i*16<=self.xSpeed<=i*16+16 and self.count1[i]==2 and j==2:
+        #             self.flags3[i]=True
+        #             self.count1[i]=3
+        #         elif self.count1==[3]*7 and j==2:
+        #             self.topnum+=-1
+        #             self.count1=[0]*7
+        #             self.flags1=[False]*7
+        #             self.flags2=[False]*7
+        #             self.flags3=[False]*7
+        #         elif i*16<=self.xSpeed<=i*16+16 and self.count1[i]==0 and j==1:
+        #             self.flags1[i]=True
+        #             self.count1[i]=1
+        #         elif i*16<=self.xSpeed<=i*16+16 and self.count1[i]==1 and self.topnum==1:
+        #             self.flags2[i]=True
+        #             self.count1[i]=2
+        #         elif i*16<=self.xSpeed<=i*16+16 and self.count1[i]==2 and self.topnum==1:
+        #             self.flags3[i]=True
+        #             self.count1[i]=3
+        #         elif self.count1==[3]*7 and self.topnum==1:
+        #             self.topnum+=-1
+        #             self.count1=[0]*7
+        #             self.flags1=[False]*7
+        #             self.flags2=[False]*7
+        #             self.flags3=[False]*7
     
     def Reflection(self):
             if self.yVector==True and self.ySpeed==SCREEN_HIGHT*3//4-8:

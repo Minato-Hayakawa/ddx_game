@@ -27,8 +27,8 @@ class Stand:
                  ySpeed:int,
                  xVector:bool,
                  yVector:bool,
-                 xPosition:int,
-                 yPosition:int,
+                 ddx_xPosition:int,
+                 ddx_yPosition:int,
                  BlockCount:np.array,
                  BlockXPosition:np.array,
                  BlockYPosition:np.array,
@@ -37,8 +37,8 @@ class Stand:
         self.ySpeed=ySpeed
         self.xVector=xVector
         self.yVector=yVector
-        self.xPosition=xPosition
-        self.yPosition=yPosition
+        self.ddx_xPosition=ddx_xPosition
+        self.ddx_yPosition=ddx_yPosition
         self.BlockCount=np.array(BlockCount)
         self.BlockXPosition=np.array(BlockXPosition)
         self.BlockYPosition=np.array(BlockYPosition)
@@ -46,28 +46,28 @@ class Stand:
     
     def HorizonalMove(self):
         if self.xVector==True and self.xSpeed<SCREEN_WIDTH-12:
-            self.xPosition+=self.xSpeed
+            self.ddx_xPosition+=self.xSpeed
             self.xVector=True
         elif self.xVector==True and self.xSpeed>=SCREEN_WIDTH-12:
-            self.xPosition+=self.xSpeed
+            self.ddx_xPosition+=self.xSpeed
             self.xVector=False
         elif self.xVector==False and self.xSpeed>0:
-            self.xPosition-=self.xSpeed
+            self.ddx_xPosition-=self.xSpeed
             self.xVector=False
         elif self.xVector==False and self.xSpeed<=0:
-            self.xPosition+=self.xSpeed
+            self.ddx_xPosition+=self.xSpeed
             self.xVector=True
     
     def VerticalMove(self):
         if self.yVector==True and self.ySpeed<SCREEN_HIGHT-16-19:
-            self.yPosition+=self.ySpeed
+            self.ddx_yPosition+=self.ySpeed
             self.yVector=True
         elif self.yVector==True and self.ySpeed>=SCREEN_HIGHT-16-19:
-            self.yPosition-=self.ySpeed
+            self.ddx_yPosition-=self.ySpeed
             self.yVector=False
         for i in range(7):
             for j in range(5):
-                if self.yVector==False and self.yPosition==self.BlockYPosition[j] and self.BlockXPosition[i]<=self.xPosition<=self.BlockXPosition[i+1]:
+                if self.yVector==False and self.ddx_yPosition==self.BlockYPosition[j] and self.BlockXPosition[i]<=self.ddx_xPosition<=self.BlockXPosition[i+1]:
                     self.BlockCount[i][j]-=1
                     self.yVector=True
         # elif self.yVector==False and self.ySpeed>self.top[self.topnum]:
@@ -156,16 +156,14 @@ class Stand:
         #             self.flags2=[False]*7
         #             self.flags3=[False]*7
     
-    def Reflection(self):
-            if self.yVector==True and self.ySpeed==SCREEN_HIGHT*3//4-8:
-                if self.xPosition-16<=self.xSpeed<=self.xPosition+36:
+    def StandReflection(self):
+            if self.yVector==True and self.ddx_yPosition==SCREEN_HIGHT*3//4-8:
+                if self.ddx_yPosition-16<=self.ddx_xPosition<=self.ddx_yPosition+36:
                     self.yVector=False
                     if pyxel.btn(pyxel.KEY_RIGHT) and pyxel.btn(pyxel.KEY_UP):
-                        self.xSpeed+=1
-                        self.speedup=True
+                        self.ddx_xPosition+=self.xSpeed*2
                     elif pyxel.btn(pyxel.KEY_LEFT) and pyxel.btn(pyxel.KEY_UP):
-                        self.xSpeed-=1
-                        self.speedup=True
+                        self.ddx_xPosition-=self.xSpeed*2
         
 class App:
     def __init__(self): #初期値を与える
@@ -173,8 +171,8 @@ class App:
         ySpeed=1
         xVector=True
         yVector=True
-        xPosition=40
-        yPosition=40
+        ddx_xPosition=40
+        ddx_yPosition=40
         BlockCount=np.array([[3,3,3,3,3],
                         [3,3,3,3,3],
                         [3,3,3,3,3],
@@ -191,8 +189,8 @@ class App:
                             ySpeed,
                             xVector,
                             yVector,
-                            xPosition,
-                            yPosition,
+                            ddx_xPosition,
+                            ddx_yPosition,
                             BlockCount,
                             BlockXPosition,
                             BlockYPosition,

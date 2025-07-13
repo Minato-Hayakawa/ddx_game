@@ -67,7 +67,9 @@ class Stand:
             self.yVector=False
         for i in range(7):
             for j in range(5):
-                if self.yVector==False and self.yPosition==self.BlockPosition[j] and 0<=self.xPosition<=16
+                if self.yVector==False and self.yPosition==self.BlockYPosition[j] and self.BlockXPosition[i]<=self.xPosition<=self.BlockXPosition[i+1]:
+                    self.BlockCount[i][j]-=1
+                    self.yVector=True
         # elif self.yVector==False and self.ySpeed>self.top[self.topnum]:
         #     self.ySpeed+=-1
         #     self.yVector=False
@@ -180,7 +182,8 @@ class App:
                         [3,3,3,3,3],
                         [3,3,3,3,3],
                         [3,3,3,3,3],])
-        BlockPosition=np.array([80,64,48,32,16])
+        BlockXPosition=np.array([0,16,32,48,64,80,96,112])
+        BlockYPosition=np.array([80,64,48,32,16])
         SpeedUp=False
         self.speedup=False
         self.BotanHandlerObj=BotanHandler()
@@ -191,7 +194,8 @@ class App:
                             xPosition,
                             yPosition,
                             BlockCount,
-                            BlockPosition,
+                            BlockXPosition,
+                            BlockYPosition,
                             SpeedUp)
         pyxel.init(120,160,title="d/dx")
         pyxel.load("my_resource.pyxres") #イメージバンクの画像を読み込み
@@ -228,7 +232,7 @@ class App:
         #x
         for i in range(5):
             for j in range(7):
-                if self.flags1[j]==False and self.topnum==5:
+                if self.flags1[j]==False and self.StandObj.BlockYPosition[i]==5:
                     pyxel.blt(j*16+8,i*16,0,24,0,16,16,pyxel.COLOR_BLACK)
                 elif self.flags1[j]==True and self.count1[j]==1 and self.topnum==5:
                     pyxel.blt(j*16+8,32+36,0,32,16,11,8,pyxel.COLOR_BLACK)  #2x

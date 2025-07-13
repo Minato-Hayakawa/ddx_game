@@ -73,9 +73,6 @@ class Stand:
                  StandxPosition:int,
                  StandyPosition:int):
         self.xSpeed=xSpeed
-        self.xVector=xVector
-        self.yVector=yVector
-
         self.StandxPosition=StandxPosition
         self.StandyPosition=StandyPosition
         self.BotanHandlerObj=BotanHandler()

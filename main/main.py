@@ -120,6 +120,8 @@ class App:
         self.BotanHandlerObj=BotanHandler()
         self.ddxObj=ddx(xSpeed,
                         ySpeed,
+                        xVector,
+                        yVector,
                         ddx_xPosition,
                         ddx_yPosition,
                         BlockCount,

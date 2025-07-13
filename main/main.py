@@ -71,14 +71,15 @@ class ddx:
         
 class Stand:
     def __init__(self,
+                 yVector,
                  xSpeed:int,
                  StandxPosition:int,
                  StandyPosition:int):
         self.xSpeed=xSpeed
+        self.yVector=yVector
         self.StandxPosition=StandxPosition
         self.StandyPosition=StandyPosition
         self.BotanHandlerObj=BotanHandler()
-    
     def HorizonalMove(self):
         if self.BotanHandlerObj.Right() and self.StandxPosition<SCREEN_WIDTH-32: #押され続けているのを検知
             self.StandxPosition+=self.xSpeed

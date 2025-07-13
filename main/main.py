@@ -224,17 +224,17 @@ class App:
         pyxel.cls(pyxel.COLOR_NAVY)
         pyxel.blt(self.StandObj.xPosition,SCREEN_HIGHT*3//4,0,0,16,32,16,pyxel.COLOR_BLACK)
         #台
-        pyxel.blt(self.StandObj.xSpeed,self.StandObj.ySpeed,0,0,0,16,16,pyxel.COLOR_BLACK)
+        pyxel.blt(self.StandObj.xPosition,self.StandObj.yPosition,0,0,0,16,16,pyxel.COLOR_BLACK)
         #d/dx
         # for i in range(4):
         #     for j in range(15):
         #         pyxel.blt(j*8,i*8,0,16,0,8,16,pyxel.COLOR_BLACK)
         #x
-        for i in range(5):
-            for j in range(7):
-                if self.flags1[j]==False and self.StandObj.BlockYPosition[i]==5:
-                    pyxel.blt(j*16+8,i*16,0,24,0,16,16,pyxel.COLOR_BLACK)
-                elif self.flags1[j]==True and self.count1[j]==1 and self.topnum==5:
+        for i in range(7):
+            for j in range(5):
+                if self.StandObj.BlockCount[i][j]==3:
+                    pyxel.blt(i*16+8,i*16,0,24,0,16,16,pyxel.COLOR_BLACK)
+                elif self.StandObj.BlockCount[i][j]==2:
                     pyxel.blt(j*16+8,32+36,0,32,16,11,8,pyxel.COLOR_BLACK)  #2x
                     pyxel.blt(j*16+8,0,0,24,0,16,16,pyxel.COLOR_BLACK)  #x^2
                     pyxel.blt(j*16+8,16,0,24,0,16,16,pyxel.COLOR_BLACK)

@@ -26,11 +26,44 @@ class ddx:
                  xSpeed:int,
                  ySpeed:int,
                  ddx_xPosition:int,
-                 ddx_yPosition:int):
+                 ddx_yPosition:int,
+                 BlockCount:int,
+                 BlockXPosition:np.array,
+                 BlockYPosition:np.array):
         self.xSpeed=xSpeed
         self.ySpeed=ySpeed
         self.ddx_xPosition=ddx_xPosition
         self.ddx_yPosition=ddx_yPosition
+        self.BlockCount=np.array(BlockCount)
+        self.BlockXPosition=np.array(BlockXPosition)
+        self.BlockYPosition=np.array(BlockYPosition)
+    
+    def HorizonalMove(self):
+        if self.xVector==True and self.xSpeed<SCREEN_WIDTH-12:
+            self.ddx_xPosition+=self.xSpeed
+            self.xVector=True
+        elif self.xVector==True and self.xSpeed>=SCREEN_WIDTH-12:
+            self.ddx_xPosition+=self.xSpeed
+            self.xVector=False
+        elif self.xVector==False and self.xSpeed>0:
+            self.ddx_xPosition-=self.xSpeed
+            self.xVector=False
+        elif self.xVector==False and self.xSpeed<=0:
+            self.ddx_xPosition+=self.xSpeed
+            self.xVector=True
+    
+    def VerticalMove(self):
+        if self.yVector==True and self.ySpeed<SCREEN_HIGHT-16-19:
+            self.ddx_yPosition+=self.ySpeed
+            self.yVector=True
+        elif self.yVector==True and self.ySpeed>=SCREEN_HIGHT-16-19:
+            self.ddx_yPosition-=self.ySpeed
+            self.yVector=False
+        for i in range(7):
+            for j in range(5):
+                if self.yVector==False and self.ddx_yPosition==self.BlockYPosition[j] and self.BlockXPosition[i]<=self.ddx_xPosition<=self.BlockXPosition[i+1]:
+                    self.BlockCount[i][j]-=1
+                    self.yVector=True
         
 class Stand:
     def __init__(self,
@@ -45,9 +78,7 @@ class Stand:
         self.xSpeed=xSpeed
         self.xVector=xVector
         self.yVector=yVector
-        self.BlockCount=np.array(BlockCount)
-        self.BlockXPosition=np.array(BlockXPosition)
-        self.BlockYPosition=np.array(BlockYPosition)
+
         self.StandxPosition=StandxPosition
         self.StandyPosition=StandyPosition
     

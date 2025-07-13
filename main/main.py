@@ -21,28 +21,35 @@ class BotanHandler:
             return True
         else:
             return False
-
-class Stand:
-    def __init__(self,xSpeed:int,
+class ddx:
+    def __init__(self,
+                 xSpeed:int,
                  ySpeed:int,
+                 ddx_xPosition:int,
+                 ddx_yPosition:int):
+        self.xSpeed=xSpeed
+        self.ySpeed=ySpeed
+        self.ddx_xPosition=ddx_xPosition
+        self.ddx_yPosition=ddx_yPosition
+        
+class Stand:
+    def __init__(self,
+                 xSpeed:int,
                  xVector:bool,
                  yVector:bool,
-                 ddx_xPosition:int,
-                 ddx_yPosition:int,
                  BlockCount:np.array,
                  BlockXPosition:np.array,
                  BlockYPosition:np.array,
-                 SpeedUp:bool):
+                 StandxPosition:int,
+                 StandyPosition:int):
         self.xSpeed=xSpeed
-        self.ySpeed=ySpeed
         self.xVector=xVector
         self.yVector=yVector
-        self.ddx_xPosition=ddx_xPosition
-        self.ddx_yPosition=ddx_yPosition
         self.BlockCount=np.array(BlockCount)
         self.BlockXPosition=np.array(BlockXPosition)
         self.BlockYPosition=np.array(BlockYPosition)
-        self.SpeedUp=SpeedUp
+        self.StandxPosition=StandxPosition
+        self.StandyPosition=StandyPosition
     
     def HorizonalMove(self):
         if self.xVector==True and self.xSpeed<SCREEN_WIDTH-12:
@@ -172,7 +179,7 @@ class App:
         xVector=True
         yVector=True
         ddx_xPosition=40
-        ddx_yPosition=40
+        ddx_yPosition=83
         BlockCount=np.array([[3,3,3,3,3],
                         [3,3,3,3,3],
                         [3,3,3,3,3],
@@ -182,19 +189,23 @@ class App:
                         [3,3,3,3,3],])
         BlockXPosition=np.array([0,16,32,48,64,80,96,112])
         BlockYPosition=np.array([80,64,48,32,16])
-        SpeedUp=False
+        StandxPosition=16
+        StandyPosition=SCREEN_HIGHT*3//4
         self.speedup=False
         self.BotanHandlerObj=BotanHandler()
+        self.ddxObj=ddx(xSpeed,
+                        ySpeed,
+                        ddx_xPosition,
+                        ddx_yPosition)
         self.StandObj=Stand(xSpeed,
                             ySpeed,
                             xVector,
                             yVector,
-                            ddx_xPosition,
-                            ddx_yPosition,
                             BlockCount,
                             BlockXPosition,
                             BlockYPosition,
-                            SpeedUp)
+                            StandxPosition,
+                            StandyPosition)
         pyxel.init(120,160,title="d/dx")
         pyxel.load("my_resource.pyxres") #イメージバンクの画像を読み込み
         pyxel.run(self.update,self.draw)
@@ -205,13 +216,13 @@ class App:
             pyxel.quit()
         
         if self.BotanHandlerObj.Right() and self.StandObj.xPosition<SCREEN_WIDTH-32: #押され続けているのを検知
-            self.StandObj.xPosition+=1
+            self.StandObj.StandxPosition+=self.StandObj.xSpeed
             if self.BotanHandlerObj.Up():
-                self.StandObj.xPosition+=1
+                self.StandObj.StandxPosition+=self.StandObj.xSpeed*2
         elif self.BotanHandlerObj.Left() and self.StandObj.xPosition>0:
-            self.StandObj.xPosition-=1
+            self.StandObj.StandxPosition-=self.StandObj.xSpeed
             if self.BotanHandlerObj.Up():
-                self.StandObj.xPosition-=1
+                self.StandObj.StandxPosition-=self.StandObj.xSpeed*2
         #台の操作
         
         self.StandObj.HorizonalMove()
@@ -220,7 +231,7 @@ class App:
                    
     def draw(self):
         pyxel.cls(pyxel.COLOR_NAVY)
-        pyxel.blt(self.StandObj.xPosition,SCREEN_HIGHT*3//4,0,0,16,32,16,pyxel.COLOR_BLACK)
+        pyxel.blt(self.StandObj.StandxPosition,self.StandObj.StandyPosition,0,0,16,32,16,pyxel.COLOR_BLACK)
         #台
         pyxel.blt(self.StandObj.xPosition,self.StandObj.yPosition,0,0,0,16,16,pyxel.COLOR_BLACK)
         #d/dx

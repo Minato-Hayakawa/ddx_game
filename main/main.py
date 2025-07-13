@@ -25,6 +25,8 @@ class ddx:
     def __init__(self,
                  xSpeed:int,
                  ySpeed:int,
+                 xVector:bool,
+                 yVector:bool,
                  ddx_xPosition:int,
                  ddx_yPosition:int,
                  BlockCount:int,
@@ -32,6 +34,8 @@ class ddx:
                  BlockYPosition:np.array):
         self.xSpeed=xSpeed
         self.ySpeed=ySpeed
+        self.xVector=xVector
+        self.yVector=yVector
         self.ddx_xPosition=ddx_xPosition
         self.ddx_yPosition=ddx_yPosition
         self.BlockCount=np.array(BlockCount)
@@ -68,8 +72,6 @@ class ddx:
 class Stand:
     def __init__(self,
                  xSpeed:int,
-                 xVector:bool,
-                 yVector:bool,
                  StandxPosition:int,
                  StandyPosition:int):
         self.xSpeed=xSpeed
@@ -124,8 +126,6 @@ class App:
                         BlockXPosition,
                         BlockYPosition)
         self.StandObj=Stand(xSpeed,
-                            xVector,
-                            yVector,
                             StandxPosition,
                             StandyPosition)
         pyxel.init(120,160,title="d/dx")

@@ -26,11 +26,12 @@ class BotanHandler:
             return False
 
 class Stand:
-    def __init__(self,xSpeed:int,ySpeed:int,xVector:bool,yVector:bool):
+    def __init__(self,xSpeed:int,ySpeed:int,xVector:bool,yVector:bool,xPosition:int):
         self.xSpeed=xSpeed
         self.ySpeed=ySpeed
         self.xVector=xVector
         self.yVector=yVector
+        self.xPosition=xPosition
     
     def HorizonalMove(self):
         if self.xVector==True and self.xSpeed<SCREEN_WIDTH-12:
@@ -153,7 +154,7 @@ class Stand:
     
     def Reflection(self):
             if self.yVector==True and self.ySpeed==SCREEN_HIGHT*3//4-8:
-                if self.player_x-16<=self.xSpeed<=self.player_x+36:
+                if self.xPosition-16<=self.xSpeed<=self.xPosition+36:
                     self.yVector=False
                     if pyxel.btn(pyxel.KEY_RIGHT) and pyxel.btn(pyxel.KEY_UP):
                         self.xSpeed+=1
@@ -168,7 +169,7 @@ class App:
         ySpeed=83
         xVector=True
         yVector=True
-        self.player_x=40
+        self.xPosition=40
         self.top={5:80,4:64,3:48,2:32,1:16}
         self.topnum=5
         self.count1=[0]*7
@@ -187,14 +188,14 @@ class App:
         if pyxel.btnp(pyxel.KEY_ESCAPE): #押した瞬間を検知
             pyxel.quit()
         
-        if self.BotanHandlerObj.Right() and self.player_x<SCREEN_WIDTH-32: #押され続けているのを検知
-            self.player_x+=1
+        if self.BotanHandlerObj.Right() and self.xPosition<SCREEN_WIDTH-32: #押され続けているのを検知
+            self.xPosition+=1
             if self.BotanHandlerObj.Up():
-                self.player_x+=1
-        elif self.BotanHandlerObj.Left() and self.player_x>0:
-            self.player_x-=1
+                self.xPosition+=1
+        elif self.BotanHandlerObj.Left() and self.xPosition>0:
+            self.xPosition-=1
             if self.BotanHandlerObj.Up():
-                self.player_x-=1
+                self.xPosition-=1
         #台の操作
         
         self.StandObj.HorizonalMove()
@@ -203,7 +204,7 @@ class App:
                    
     def draw(self):
         pyxel.cls(pyxel.COLOR_NAVY)
-        pyxel.blt(self.player_x,SCREEN_HIGHT*3//4,0,0,16,32,16,pyxel.COLOR_BLACK)
+        pyxel.blt(self.xPosition,SCREEN_HIGHT*3//4,0,0,16,32,16,pyxel.COLOR_BLACK)
         #台
         pyxel.blt(self.StandObj.xSpeed,self.StandObj.ySpeed,0,0,0,16,16,pyxel.COLOR_BLACK)
         #d/dx

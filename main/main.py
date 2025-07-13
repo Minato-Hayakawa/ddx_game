@@ -122,7 +122,10 @@ class App:
         self.ddxObj=ddx(xSpeed,
                         ySpeed,
                         ddx_xPosition,
-                        ddx_yPosition)
+                        ddx_yPosition,
+                        BlockCount,
+                        BlockXPosition,
+                        BlockYPosition)
         self.StandObj=Stand(xSpeed,
                             ySpeed,
                             xVector,

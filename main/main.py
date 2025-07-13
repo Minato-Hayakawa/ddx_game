@@ -128,13 +128,11 @@ class App:
                         BlockYPosition)
         self.StandObj=Stand(xSpeed,
                             ySpeed,
-                            xVector,
-                            yVector,
+                            ddx_xPosition,
+                            ddx_yPosition,
                             BlockCount,
                             BlockXPosition,
-                            BlockYPosition,
-                            StandxPosition,
-                            StandyPosition)
+                            BlockYPosition)
         pyxel.init(120,160,title="d/dx")
         pyxel.load("my_resource.pyxres") #イメージバンクの画像を読み込み
         pyxel.run(self.update,self.draw)

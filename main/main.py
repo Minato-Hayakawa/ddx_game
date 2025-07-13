@@ -164,6 +164,10 @@ class Stand:
         
 class App:
     def __init__(self): #初期値を与える
+        xSpeed=0
+        ySpeed=83
+        xVector=True
+        yVector=True
         self.player_x=40
         self.top={5:80,4:64,3:48,2:32,1:16}
         self.topnum=5
@@ -173,7 +177,7 @@ class App:
         self.flags3=[False]*7
         self.speedup=False
         self.BotanHandlerObj=BotanHandler()
-        self.StandObj=Stand()
+        self.StandObj=Stand(xSpeed,ySpeed,xVector,yVector)
         pyxel.init(120,160,title="d/dx")
         pyxel.load("my_resource.pyxres") #イメージバンクの画像を読み込み
         pyxel.run(self.update,self.draw)

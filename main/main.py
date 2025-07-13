@@ -26,11 +26,11 @@ class BotanHandler:
             return False
 
 class Stand:
-    def __init__(self):
-        self.xVector=True
-        self.xSpeed=0
-        self.ySpeed=83
-        self.yVector=True
+    def __init__(self,xSpeed:int,ySpeed:int,xVector:bool,yVector:bool):
+        self.xSpeed=xSpeed
+        self.ySpeed=ySpeed
+        self.xVector=xVector
+        self.yVector=yVector
     
     def HorizonalMove(self):
         if self.xVector==True and self.xSpeed<SCREEN_WIDTH-12:

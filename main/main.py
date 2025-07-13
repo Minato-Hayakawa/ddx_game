@@ -140,11 +140,10 @@ class App:
     def update(self): #フレーム更新時の処理
         if pyxel.btnp(pyxel.KEY_ESCAPE): #押した瞬間を検知
             pyxel.quit()
-    
-        
         self.ddxObj.HorizonalMove()
         self.ddxObj.VerticalMove()
         self.StandObj.StandReflection()
+        self.StandObj.HorizonalMove()
                    
     def draw(self):
         pyxel.cls(pyxel.COLOR_NAVY)

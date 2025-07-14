@@ -171,7 +171,7 @@ class App:
         pyxel.cls(pyxel.COLOR_NAVY)
         pyxel.blt(self.StandObj.StandxPosition,self.StandObj.StandyPosition,0,0,16,32,16,pyxel.COLOR_BLACK)
         #台
-        pyxel.blt(self.StandObj.xPosition,self.StandObj.yPosition,0,0,0,16,16,pyxel.COLOR_BLACK)
+        pyxel.blt(self.StandObj.StandxPosition,self.StandObj.StandxPosition,0,0,0,16,16,pyxel.COLOR_BLACK)
         #d/dx
         # for i in range(4):
         #     for j in range(15):

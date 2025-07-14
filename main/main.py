@@ -84,10 +84,10 @@ class ddx:
             self.ddx_xVector=True
     
     def VerticalMove(self):
-        if self.ddx_yVector==True and self.ySpeed<SCREEN_HIGHT-16-19:
+        if self.ddx_yPosition<SCREEN_HIGHT-16-19:
             self.ddx_yPosition+=self.ySpeed
             self.ddx_yVector=True
-        elif self.ddx_yVector==True and self.ySpeed>=SCREEN_HIGHT-16-19:
+        elif ddx_yPosition>=SCREEN_HIGHT-16-19:
             self.ddx_yPosition-=self.ySpeed
             self.ddx_yVector=False
         for i in range(7):
@@ -131,14 +131,14 @@ class Stand:
             if self.BotanHandlerObj.Up():
                 self.StandxPosition-=self.xSpeed*2
                 
-    # def StandReflection(self):
-    #         if self.yVector==True and self.ddxObj.ddx_yPosition==SCREEN_HIGHT*3//4-8:
-    #             if self.ddxObj.ddx_yPosition-16<=self.ddx_xPosition<=self.ddxObj.ddx_yPosition+36:
-    #                 self.yVector=False
-    #                 if pyxel.btn(pyxel.KEY_RIGHT) and pyxel.btn(pyxel.KEY_UP):
-    #                     self.ddx_xPosition+=self.xSpeed*2
-    #                 elif pyxel.btn(pyxel.KEY_LEFT) and pyxel.btn(pyxel.KEY_UP):
-    #                     self.ddx_xPosition-=self.xSpeed*2
+    def StandReflection(self):
+            if self.yVector==True and self.ddxObj.ddx_yPosition==SCREEN_HIGHT*3//4-8:
+                if self.ddxObj.ddx_yPosition-16<=self.ddx_xPosition<=self.ddxObj.ddx_yPosition+36:
+                    self.yVector=False
+                    if pyxel.btn(pyxel.KEY_RIGHT) and pyxel.btn(pyxel.KEY_UP):
+                        self.ddx_xPosition+=self.xSpeed*2
+                    elif pyxel.btn(pyxel.KEY_LEFT) and pyxel.btn(pyxel.KEY_UP):
+                        self.ddx_xPosition-=self.xSpeed*2
         
 class App:
     def __init__(self): #初期値を与える
@@ -166,14 +166,14 @@ class App:
             pyxel.quit()
         self.ddxObj.HorizonalMove()
         self.ddxObj.VerticalMove()
-        # self.StandObj.StandReflection()
+        self.StandObj.StandReflection()
         self.StandObj.HorizonalMove()
                    
     def draw(self):
         pyxel.cls(pyxel.COLOR_NAVY)
         pyxel.blt(self.StandObj.StandxPosition,self.StandObj.StandyPosition,0,0,16,32,16,pyxel.COLOR_BLACK)
         #台
-        pyxel.blt(self.ddxObj.ddx_xPosition,ddx_yPosition,0,0,0,16,16,pyxel.COLOR_BLACK)
+        pyxel.blt(self.ddxObj.ddx_xPosition,self.ddxObj.ddx_yPosition,0,0,0,16,16,pyxel.COLOR_BLACK)
         #d/dx
         # for i in range(4):
         #     for j in range(15):

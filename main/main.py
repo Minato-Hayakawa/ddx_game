@@ -7,6 +7,8 @@ xSpeed=1
 ySpeed=1
 xVector=True
 yVector=True
+ddx_xVector=True
+ddx_yVector=True
 ddx_xPosition=40
 ddx_yPosition=83
 BlockCount=np.array([[3,3,3,3,3],
@@ -59,8 +61,8 @@ class ddx:
         ):
         self.xSpeed=xSpeed
         self.ySpeed=ySpeed
-        self.xVector=xVector
-        self.yVector=yVector
+        self.ddx_xVector=ddx_xVector
+        self.ddx_yVector=ddx_yVector
         self.ddx_xPosition=ddx_xPosition
         self.ddx_yPosition=ddx_yPosition
         self.BlockCount=np.array(BlockCount)
@@ -68,18 +70,18 @@ class ddx:
         self.BlockYPosition=np.array(BlockYPosition)
     
     def HorizonalMove(self):
-        if self.xVector==True and self.xSpeed<SCREEN_WIDTH-12:
+        if self.ddx_xVector==True and self.ddx_xPosition<SCREEN_WIDTH-12:
             self.ddx_xPosition+=self.xSpeed
-            self.xVector=True
-        elif self.xVector==True and self.xSpeed>=SCREEN_WIDTH-12:
+            self.ddx_xVector=True
+        elif self.ddx_xVector==True and self.xSpeed>=SCREEN_WIDTH-12:
             self.ddx_xPosition+=self.xSpeed
-            self.xVector=False
-        elif self.xVector==False and self.xSpeed>0:
+            self.ddx_xVector=False
+        elif self.ddx_xVector==False and self.xSpeed>0:
             self.ddx_xPosition-=self.xSpeed
-            self.xVector=False
-        elif self.xVector==False and self.xSpeed<=0:
+            self.ddx_xVector=False
+        elif self.ddx_xVector==False and self.xSpeed<=0:
             self.ddx_xPosition+=self.xSpeed
-            self.xVector=True
+            self.ddx_xVector=True
     
     def VerticalMove(self):
         if self.yVector==True and self.ySpeed<SCREEN_HIGHT-16-19:

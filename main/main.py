@@ -70,16 +70,16 @@ class ddx:
         self.BlockYPosition=np.array(BlockYPosition)
     
     def HorizonalMove(self):
-        if self.ddx_xVector==True and self.ddx_xPosition<SCREEN_WIDTH-12:
+        if self.ddx_xPosition<SCREEN_WIDTH-12:
             self.ddx_xPosition+=self.xSpeed
             self.ddx_xVector=True
-        elif self.ddx_xVector==True and self.xSpeed>=SCREEN_WIDTH-12:
+        elif self.ddx_xPosition>=SCREEN_WIDTH-12:
             self.ddx_xPosition+=self.xSpeed
             self.ddx_xVector=False
-        elif self.ddx_xVector==False and self.xSpeed>0:
+        elif self.ddx_xPosition>0:
             self.ddx_xPosition-=self.xSpeed
             self.ddx_xVector=False
-        elif self.ddx_xVector==False and self.xSpeed<=0:
+        elif self.ddx_xPosition<=0:
             self.ddx_xPosition+=self.xSpeed
             self.ddx_xVector=True
     
@@ -126,19 +126,19 @@ class Stand:
             self.StandxPosition+=self.xSpeed
             if self.BotanHandlerObj.Up():
                 self.StandxPosition+=self.xSpeed*2
-        elif self.BotanHandlerObj.Left() and self.xPosition>0:
+        elif self.BotanHandlerObj.Left() and self.StandxPosition>0:
             self.StandxPosition-=self.xSpeed
             if self.BotanHandlerObj.Up():
                 self.StandxPosition-=self.xSpeed*2
                 
-    def StandReflection(self):
-            if self.yVector==True and self.ddxObj.ddx_yPosition==SCREEN_HIGHT*3//4-8:
-                if self.ddxObj.ddx_yPosition-16<=self.ddx_xPosition<=self.ddxObj.ddx_yPosition+36:
-                    self.yVector=False
-                    if pyxel.btn(pyxel.KEY_RIGHT) and pyxel.btn(pyxel.KEY_UP):
-                        self.ddx_xPosition+=self.xSpeed*2
-                    elif pyxel.btn(pyxel.KEY_LEFT) and pyxel.btn(pyxel.KEY_UP):
-                        self.ddx_xPosition-=self.xSpeed*2
+    # def StandReflection(self):
+    #         if self.yVector==True and self.ddxObj.ddx_yPosition==SCREEN_HIGHT*3//4-8:
+    #             if self.ddxObj.ddx_yPosition-16<=self.ddx_xPosition<=self.ddxObj.ddx_yPosition+36:
+    #                 self.yVector=False
+    #                 if pyxel.btn(pyxel.KEY_RIGHT) and pyxel.btn(pyxel.KEY_UP):
+    #                     self.ddx_xPosition+=self.xSpeed*2
+    #                 elif pyxel.btn(pyxel.KEY_LEFT) and pyxel.btn(pyxel.KEY_UP):
+    #                     self.ddx_xPosition-=self.xSpeed*2
         
 class App:
     def __init__(self): #初期値を与える
@@ -166,14 +166,14 @@ class App:
             pyxel.quit()
         self.ddxObj.HorizonalMove()
         self.ddxObj.VerticalMove()
-        self.StandObj.StandReflection()
+        # self.StandObj.StandReflection()
         self.StandObj.HorizonalMove()
                    
     def draw(self):
         pyxel.cls(pyxel.COLOR_NAVY)
         pyxel.blt(self.StandObj.StandxPosition,self.StandObj.StandyPosition,0,0,16,32,16,pyxel.COLOR_BLACK)
         #台
-        pyxel.blt(self.StandObj.StandxPosition,self.StandObj.StandxPosition,0,0,0,16,16,pyxel.COLOR_BLACK)
+        pyxel.blt(self.ddxObj.ddx_xPosition,ddx_yPosition,0,0,0,16,16,pyxel.COLOR_BLACK)
         #d/dx
         # for i in range(4):
         #     for j in range(15):

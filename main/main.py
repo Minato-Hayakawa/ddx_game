@@ -84,17 +84,17 @@ class ddx:
             self.ddx_xVector=True
     
     def VerticalMove(self):
-        if self.yVector==True and self.ySpeed<SCREEN_HIGHT-16-19:
+        if self.ddx_yVector==True and self.ySpeed<SCREEN_HIGHT-16-19:
             self.ddx_yPosition+=self.ySpeed
-            self.yVector=True
-        elif self.yVector==True and self.ySpeed>=SCREEN_HIGHT-16-19:
+            self.ddx_yVector=True
+        elif self.ddx_yVector==True and self.ySpeed>=SCREEN_HIGHT-16-19:
             self.ddx_yPosition-=self.ySpeed
-            self.yVector=False
+            self.ddx_yVector=False
         for i in range(7):
             for j in range(5):
-                if self.yVector==False and self.ddx_yPosition==self.BlockYPosition[j] and self.BlockXPosition[i]<=self.ddx_xPosition<=self.BlockXPosition[i+1]:
+                if self.ddx_yVector==False and self.ddx_yPosition==self.BlockYPosition[j] and self.BlockXPosition[i]<=self.ddx_xPosition<=self.BlockXPosition[i+1]:
                     self.BlockCount[i][j]-=1
-                    self.yVector=True
+                    self.ddx_yVector=True
         
 class Stand:
     def __init__(

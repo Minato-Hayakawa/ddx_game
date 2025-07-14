@@ -3,7 +3,23 @@ import numpy as np
 
 SCREEN_WIDTH =120
 SCREEN_HIGHT =160
-
+xSpeed=1
+ySpeed=1
+xVector=True
+yVector=True
+ddx_xPosition=40
+ddx_yPosition=83
+BlockCount=np.array([[3,3,3,3,3],
+                [3,3,3,3,3],
+                [3,3,3,3,3],
+                [3,3,3,3,3],
+                [3,3,3,3,3],
+                [3,3,3,3,3],
+                [3,3,3,3,3],])
+BlockXPosition=np.array([0,16,32,48,64,80,96,112])
+BlockYPosition=np.array([80,64,48,32,16])
+StandxPosition=16
+StandyPosition=SCREEN_HIGHT*3//4
 class BotanHandler:
     
     @staticmethod
@@ -91,6 +107,17 @@ class Stand:
         self.StandxPosition=StandxPosition
         self.StandyPosition=StandyPosition
         self.BotanHandlerObj=BotanHandler()
+        self.ddxObj=ddx(
+            xSpeed,
+            ySpeed,
+            xVector,
+            yVector,
+            ddx_xPosition,
+            ddx_yPosition,
+            BlockCount,
+            BlockXPosition,
+            BlockYPosition,
+        )
         
     def HorizonalMove(self):
         if self.BotanHandlerObj.Right() and self.StandxPosition<SCREEN_WIDTH-32: #押され続けているのを検知
@@ -113,23 +140,6 @@ class Stand:
         
 class App:
     def __init__(self): #初期値を与える
-        xSpeed=1
-        ySpeed=1
-        xVector=True
-        yVector=True
-        ddx_xPosition=40
-        ddx_yPosition=83
-        BlockCount=np.array([[3,3,3,3,3],
-                        [3,3,3,3,3],
-                        [3,3,3,3,3],
-                        [3,3,3,3,3],
-                        [3,3,3,3,3],
-                        [3,3,3,3,3],
-                        [3,3,3,3,3],])
-        BlockXPosition=np.array([0,16,32,48,64,80,96,112])
-        BlockYPosition=np.array([80,64,48,32,16])
-        StandxPosition=16
-        StandyPosition=SCREEN_HIGHT*3//4
         self.speedup=False
         self.BotanHandlerObj=BotanHandler()
         self.ddxObj=ddx(xSpeed,

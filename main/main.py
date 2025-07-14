@@ -130,8 +130,8 @@ class Stand:
                 self.StandxPosition-=self.xSpeed*2
                 
     def StandReflection(self):
-            if self.yVector==True and self.ddx_yPosition==SCREEN_HIGHT*3//4-8:
-                if self.ddx_yPosition-16<=self.ddx_xPosition<=self.ddx_yPosition+36:
+            if self.yVector==True and self.ddxObj.ddx_yPosition==SCREEN_HIGHT*3//4-8:
+                if self.ddxObj.ddx_yPosition-16<=self.ddx_xPosition<=self.ddxObj.ddx_yPosition+36:
                     self.yVector=False
                     if pyxel.btn(pyxel.KEY_RIGHT) and pyxel.btn(pyxel.KEY_UP):
                         self.ddx_xPosition+=self.xSpeed*2

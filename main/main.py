@@ -95,7 +95,7 @@ class ddx:
         elif self.ddx_yVector==True and ddx_yPosition>=SCREEN_HIGHT-100:
             self.ddx_yPosition-=self.ySpeed
             self.ddx_yVector=False
-        elif (self.ddx_xVector==True or self.ddx_xVector==False) and self.ddx_yPosition>=110 and self.StandxPosition-16<=self.ddx_xPosition<=self.StandxPosition+60:
+        if self.ddx_yPosition>=110 and self.StandxPosition-16<=self.ddx_xPosition<=self.StandxPosition+72:
             self.ddx_yVector=False
         for i in range(7):
             for j in range(5):

@@ -70,16 +70,16 @@ class ddx:
         self.BlockYPosition=np.array(BlockYPosition)
     
     def HorizonalMove(self):
-        if self.ddx_xPosition<SCREEN_WIDTH-12:
+        if self.ddx_xVector==True and self.ddx_xPosition<SCREEN_WIDTH-12:
             self.ddx_xPosition+=self.xSpeed
             self.ddx_xVector=True
-        elif self.ddx_xPosition>=SCREEN_WIDTH-12:
+        elif self.ddx_xVector==True and self.ddx_xPosition>=SCREEN_WIDTH-12:
             self.ddx_xPosition+=self.xSpeed
             self.ddx_xVector=False
-        elif self.ddx_xPosition>0:
+        elif self.ddx_xVector==False and self.ddx_xPosition>0:
             self.ddx_xPosition-=self.xSpeed
             self.ddx_xVector=False
-        elif self.ddx_xPosition<=0:
+        elif self.ddx_xVector==False and self.ddx_xPosition<=0:
             self.ddx_xPosition+=self.xSpeed
             self.ddx_xVector=True
     

@@ -55,6 +55,8 @@ class ddx:
         ddx_yVector:bool,
         ddx_xPosition:int,
         ddx_yPosition:int,
+        StandxPosition:int,
+        StandyPosition:int,
         BlockCount:int,
         BlockXPosition:np.array,
         BlockYPosition:np.array
@@ -65,6 +67,8 @@ class ddx:
         self.ddx_yVector=ddx_yVector
         self.ddx_xPosition=ddx_xPosition
         self.ddx_yPosition=ddx_yPosition
+        self.StandxPosition=StandxPosition
+        self.StandyPosition=StandyPosition
         self.BlockCount=np.array(BlockCount)
         self.BlockXPosition=np.array(BlockXPosition)
         self.BlockYPosition=np.array(BlockYPosition)
@@ -86,6 +90,9 @@ class ddx:
     def VerticalMove(self):
         if self.ddx_yVector==True and self.ddx_yPosition<SCREEN_HIGHT-16-19:
             self.ddx_yPosition+=self.ySpeed
+            if self.ddx_yPosition>=110:
+                if self.StandxPosition-16<=self.ddx_xPosition<=self.StandxPosition+60:
+                    self.ddx_yVector=False
         elif self.ddx_yVector==False and ddx_yPosition<SCREEN_HIGHT-16-19:
             self.ddx_yPosition-=self.xSpeed
         elif self.ddx_yVector==True and ddx_yPosition>=SCREEN_HIGHT-100:
@@ -113,13 +120,15 @@ class Stand:
         self.ddxObj=ddx(
             xSpeed,
             ySpeed,
-            xVector,
-            yVector,
+            ddx_xVector,
+            ddx_yVector,
             ddx_xPosition,
             ddx_yPosition,
+            StandxPosition,
+            StandyPosition,
             BlockCount,
             BlockXPosition,
-            BlockYPosition,
+            BlockYPosition
         )
         
     def HorizonalMove(self):
@@ -131,29 +140,24 @@ class Stand:
             self.StandxPosition-=self.xSpeed
             if self.BotanHandlerObj.Up():
                 self.StandxPosition-=self.xSpeed*2
-                
-    def StandReflection(self):
-            if self.ddxObj.ddx_yVector==True and self.ddxObj.ddx_yPosition==SCREEN_HIGHT*3//4-8:
-                if self.ddxObj.ddx_yPosition-16<=self.ddx_xPosition<=self.ddxObj.ddx_yPosition+36:
-                    self.ddxObj.ddx_yVector=False
-                    if pyxel.btn(pyxel.KEY_RIGHT) and pyxel.btn(pyxel.KEY_UP):
-                        self.ddx_xPosition+=self.xSpeed*2
-                    elif pyxel.btn(pyxel.KEY_LEFT) and pyxel.btn(pyxel.KEY_UP):
-                        self.ddx_xPosition-=self.xSpeed*2
+            
         
 class App:
     def __init__(self): #初期値を与える
         self.speedup=False
         self.BotanHandlerObj=BotanHandler()
-        self.ddxObj=ddx(xSpeed,
-                        ySpeed,
-                        xVector,
-                        yVector,
-                        ddx_xPosition,
-                        ddx_yPosition,
-                        BlockCount,
-                        BlockXPosition,
-                        BlockYPosition)
+        self.ddxObj=ddx(            
+            xSpeed,
+            ySpeed,
+            ddx_xVector,
+            ddx_yVector,
+            ddx_xPosition,
+            ddx_yPosition,
+            StandxPosition,
+            StandyPosition,
+            BlockCount,
+            BlockXPosition,
+            BlockYPosition)
         self.StandObj=Stand(xSpeed,
                             yVector,
                             StandxPosition,
@@ -167,8 +171,8 @@ class App:
             pyxel.quit()
         self.ddxObj.HorizonalMove()
         self.ddxObj.VerticalMove()
-        self.StandObj.StandReflection()
         self.StandObj.HorizonalMove()
+        print(self.ddxObj.ddx_yPosition)
                    
     def draw(self):
         pyxel.cls(pyxel.COLOR_NAVY)

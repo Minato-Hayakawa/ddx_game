@@ -90,19 +90,25 @@ class ddx:
     def VerticalMove(self):
         if self.ddx_yVector==True and self.ddx_yPosition<SCREEN_HIGHT-16-19:
             self.ddx_yPosition+=self.ySpeed
-            if self.ddx_yPosition>=110:
-                if self.StandxPosition-16<=self.ddx_xPosition<=self.StandxPosition+60:
-                    self.ddx_yVector=False
         elif self.ddx_yVector==False and ddx_yPosition<SCREEN_HIGHT-16-19:
             self.ddx_yPosition-=self.xSpeed
         elif self.ddx_yVector==True and ddx_yPosition>=SCREEN_HIGHT-100:
             self.ddx_yPosition-=self.ySpeed
+            self.ddx_yVector=False
+        elif (self.ddx_xVector==True or self.ddx_xVector==False) and self.ddx_yPosition>=110 and self.StandxPosition-16<=self.ddx_xPosition<=self.StandxPosition+60:
             self.ddx_yVector=False
         for i in range(7):
             for j in range(5):
                 if self.ddx_yVector==False and self.ddx_yPosition==self.BlockYPosition[j] and self.BlockXPosition[i]<=self.ddx_xPosition<=self.BlockXPosition[i+1]:
                     self.BlockCount[i][j]-=1
                     self.ddx_yVector=True
+                if self.BlockCount[i][j]==0:
+                    if (i-1)*16<self.ddx_xPosition<i*16 and self.ddx_yPosition<=(j+1)*16:
+                        self.ddx_yVector=False
+                    elif self.ddx_xPosition==i*16 and self.ddx_yPosition<=(j+1)*16:
+                        self.ddx_xVector=False
+                    elif (i-1)*16<=self.ddx_xPosition and self.ddx_yPosition<=(j+1)*16:
+                        self.ddx_xVector=True
         
 class Stand:
     def __init__(

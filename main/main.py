@@ -84,12 +84,14 @@ class ddx:
             self.ddx_xVector=True
     
     def VerticalMove(self):
-        if self.ddx_yPosition<SCREEN_HIGHT-16-19:
+        if self.ddx_yVector==True and self.ddx_yPosition<SCREEN_HIGHT-16-19:
             self.ddx_yPosition+=self.ySpeed
             self.ddx_yVector=True
-        elif ddx_yPosition>=SCREEN_HIGHT-16-19:
+        elif self.ddx_yVector==True and ddx_yPosition>=SCREEN_HIGHT-16-19:
             self.ddx_yPosition-=self.ySpeed
             self.ddx_yVector=False
+        elif self/ddx_xVector==False and 80<ddx_yPosition<SCREEN_HIGHT-16-19:
+            self.ddx_yPosition-=self.ySpeed
         for i in range(7):
             for j in range(5):
                 if self.ddx_yVector==False and self.ddx_yPosition==self.BlockYPosition[j] and self.BlockXPosition[i]<=self.ddx_xPosition<=self.BlockXPosition[i+1]:
@@ -132,9 +134,9 @@ class Stand:
                 self.StandxPosition-=self.xSpeed*2
                 
     def StandReflection(self):
-            if self.yVector==True and self.ddxObj.ddx_yPosition==SCREEN_HIGHT*3//4-8:
+            if self.ddxObj.ddx_yVector==True and self.ddxObj.ddx_yPosition==SCREEN_HIGHT*3//4-8:
                 if self.ddxObj.ddx_yPosition-16<=self.ddx_xPosition<=self.ddxObj.ddx_yPosition+36:
-                    self.yVector=False
+                    self.ddxObj.ddx_yVector=False
                     if pyxel.btn(pyxel.KEY_RIGHT) and pyxel.btn(pyxel.KEY_UP):
                         self.ddx_xPosition+=self.xSpeed*2
                     elif pyxel.btn(pyxel.KEY_LEFT) and pyxel.btn(pyxel.KEY_UP):

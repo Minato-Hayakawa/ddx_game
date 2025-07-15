@@ -90,7 +90,7 @@ class ddx:
         elif self.ddx_yVector==True and ddx_yPosition>=SCREEN_HIGHT-16-19:
             self.ddx_yPosition-=self.ySpeed
             self.ddx_yVector=False
-        elif self/ddx_xVector==False and 80<ddx_yPosition<SCREEN_HIGHT-16-19:
+        elif self.ddx_xVector==False and 80<ddx_yPosition<SCREEN_HIGHT-16-19:
             self.ddx_yPosition-=self.ySpeed
         for i in range(7):
             for j in range(5):
